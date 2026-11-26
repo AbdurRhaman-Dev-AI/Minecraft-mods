@@ -40,6 +40,8 @@ public final class GodTechGuideAnimator {
             renderRailgunScene(g, font, x, y, w, h, t);
         } else if (item == ModItems.ARC_REACTOR.get()) {
             renderArcReactorScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.MKV_REACTOR_CONTROLLER.get() || item == ModItems.MKV_REACTOR_CORE.get()) {
+            renderMkvReactorScene(g, font, x, y, w, h, t);
         } else if (item == ModItems.ALLOY_SYNTHESIZER.get()) {
             renderSynthesizerScene(g, font, x, y, w, h, t);
         } else if (item == ModItems.QUANTUM_WARP_BEACON.get() || item == ModItems.QUANTUM_WARP_LINKER.get()) {
@@ -152,7 +154,24 @@ public final class GodTechGuideAnimator {
         g.renderItem(new ItemStack(ModItems.ALLOY_SYNTHESIZER.get()), cx + 30, cy - 8);
         g.renderItem(new ItemStack(Items.REDSTONE_LAMP), cx - 46, cy - 8);
 
-        drawCenteredCaption(g, font, "Outputs 16,384 FE/t", cx, y + h - 14, 0xFF55FFFF);
+        drawCenteredCaption(g, font, "Outputs 100,000 FE/t", cx, y + h - 14, 0xFF55FFFF);
+    }
+
+    private static void renderMkvReactorScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
+        int startX = x + (w - 72) / 2;
+        int startY = y + 26;
+        for (int row = 0; row < 2; row++) {
+            for (int col = 0; col < 4; col++) {
+                int bx = startX + col * 18;
+                int by = startY + row * 18;
+                Item block = (row == 1 && col == 0)
+                        ? ModItems.MKV_REACTOR_CONTROLLER.get()
+                        : ((col == 1 || col == 2) ? ModItems.MKV_REACTOR_CORE.get() : ModItems.TITANIUM_CASING.get());
+                g.renderItem(new ItemStack(block), bx, by);
+            }
+        }
+        g.renderItem(new ItemStack(Items.LEVER), startX + 27, startY - 16);
+        drawCenteredCaption(g, font, "4x2x2: 1,474,560 su + FE", x + w / 2, y + h - 14, 0xFFFFAA00);
     }
 
     private static void renderSynthesizerScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {

@@ -3,7 +3,9 @@ package com.abdur.godtechascension.registry;
 import com.abdur.godtechascension.GodTechAscension;
 import com.abdur.godtechascension.block.AlloySynthesizerBlock;
 import com.abdur.godtechascension.block.ArcReactorBlock;
+import com.abdur.godtechascension.block.MkvReactorFallbackBlock;
 import com.abdur.godtechascension.block.QuantumWarpBeaconBlock;
+import com.abdur.godtechascension.compat.create.CreateCompat;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
@@ -11,6 +13,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -91,6 +94,33 @@ public final class ModBlocks {
                             .lightLevel(state -> 12)
                             .sound(SoundType.AMETHYST)
             )
+    );
+
+    public static final DeferredBlock<Block> MKV_REACTOR_CORE = BLOCKS.register(
+            "mkv_reactor_core",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_CYAN)
+                            .requiresCorrectToolForDrops()
+                            .strength(5.0F, 12.0F)
+                            .lightLevel(state -> 15)
+                            .sound(SoundType.COPPER)
+            )
+    );
+
+    public static final DeferredBlock<Block> MKV_REACTOR_CONTROLLER = BLOCKS.register(
+            "mkv_reactor_controller",
+            () -> {
+                BlockBehaviour.Properties props = BlockBehaviour.Properties.of()
+                        .mapColor(MapColor.COLOR_ORANGE)
+                        .requiresCorrectToolForDrops()
+                        .strength(5.0F, 12.0F)
+                        .lightLevel(state -> 12)
+                        .sound(SoundType.COPPER);
+                return ModList.get().isLoaded("create")
+                        ? CreateCompat.createMkvControllerBlock(props)
+                        : new MkvReactorFallbackBlock(props);
+            }
     );
 
     private ModBlocks() {

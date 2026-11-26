@@ -4,11 +4,11 @@ license = "MIT"
 
 [[mods]]
 modId = "godtechascension"
-version = "2.0.0"
+version = "3.0.0"
 displayName = "GodTech: Ascension"
 authors = "Abdur"
 description = '''
-Endgame sci-fi industrial progression mod with Arc Reactors, Alloy Synthesizers, Ascension Exosuit, Jetpack, Plasma Railgun, Warp Beacons, JEI support, and Hold [W] animated guides.
+Endgame sci-fi & Create kinetic industrial progression mod with 1-block and 4x2x2 MK-V Arc Reactors (1,474,560 su + 100,000 FE/t), Alloy Synthesizer, Ascension Exosuit (with built-in Engineer's Goggles), Blaze Powder Jetpack, Plasma Railgun, Warp Beacons, JEI support, and Hold [W] animated guides.
 '''
 
 [[dependencies.godtechascension]]
@@ -31,3 +31,10 @@ type = "optional"
 versionRange = "[19.0,)"
 ordering = "NONE"
 side = "CLIENT"
+
+[[dependencies.godtechascension]]
+modId = "create"
+type = "optional"
+versionRange = "[6.0,)"
+ordering = "NONE"
+side = "BOTH"

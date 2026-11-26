@@ -1,9 +1,11 @@
-﻿{
+{
   "values": [
     "godtechascension:titanium_ore",
     "godtechascension:deepslate_titanium_ore",
     "godtechascension:titanium_casing",
     "godtechascension:arc_reactor",
+    "godtechascension:mkv_reactor_controller",
+    "godtechascension:mkv_reactor_core",
     "godtechascension:alloy_synthesizer",
     "godtechascension:quantum_warp_beacon"
   ]

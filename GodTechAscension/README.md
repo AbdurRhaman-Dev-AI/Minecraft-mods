@@ -1,36 +1,29 @@
 # GodTech: Ascension
 
 **Mod ID:** `godtechascension`  
-**Version:** `2.0.0`  
+**Version:** `3.0.0`  
 **Target:** Minecraft `1.21.1` — NeoForge `21.1.x` (Java 21)
 
-An endgame sci-fi & industrial progression mod built to complement **Create**, **TFMG**, **Create Diesel Generators**, **Create Nuclear**, **PowerGrid**, **Create Aeronautics**, **JEI**, and **GodTrades5050**.
+An endgame sci-fi & **Create `6.0.10`** industrial progression mod built to complement **Create**, **TFMG**, **Create Diesel Generators**, **Create Nuclear**, **PowerGrid**, **Create Aeronautics**, **JEI**, and **GodTrades5050**.
 
 Every item and block has **JEI recipe & Info integration** plus a **`Hold [W]` animated guide popup** right in your inventory or JEI.
 
 ---
 
-## What's New in `v2.0.0`
+## What's New in `v3.0.0`
 
-- **Arc Reactor (`16,384 FE/t`):** Endgame generator powered by a `God Core` (`1,000,000 FE` buffer) that auto-pushes `FE` to adjacent **PowerGrid / TFMG / GodTech** cables and machines.
-- **Alloy Synthesizer (`FE` Machine + JEI Category):** 2-input sci-fi synthesizer with GUI, energy bar, and custom JEI recipe category for `Titanium Alloy`, `Quantum Circuits`, and `Singularity Shards`.
-- **Ascension Exosuit & Jetpack (Unbreakable & Lava-Proof):**
-  - **Ascension Helmet:** Night Vision + Water Breathing.
-  - **Ascension Chestplate:** Fire Resistance + heavy armor.
-  - **Ascension Jetpack:** Fueled by **Blaze Powder** (right-click in inventory or hand; `10` Blaze Powder = `100%` tank) with a live **Car/Bike-style HUD** showing `km/h` speed, `ODO (km)` distance traveled, and fuel gauge!
-  - **Ascension Leggings:** Speed II boost.
-  - **Ascension Boots:** Complete Fall-Damage Immunity.
-- **Sci-Fi Weapons & Gadgets:**
-  - **God Sword (`25` Attack Damage):** Unbreakable, lava-proof, plus Right-Click `5`-block AoE Energy Slash.
-  - **God Pickaxe (`10×` Efficiency V speed):** Unbreakable, lava-proof, `3×3` mining (`Shift` for `1×1`).
-  - **Plasma Railgun:** Piercing `30`-block cyan plasma beam (`28` damage).
-  - **Quantum Magnet Ring:** Pulls nearby drops within `8` blocks into your inventory.
-  - **Quantum Warp Beacon & Linker:** Bind a beacon at your base or airship dock and warp back across dimensions.
+- **1-Block `Arc Reactor` Overhaul (`100,000 FE/t`):** Custom 3D MK-V Reactor model (copper pipes, side radiator fins, brass-framed 4-pane plasma window) generating **`100,000 FE/t`** (`10,000,000 FE` buffer).
+- **`4×2×2` `MK-V Arc Reactor` Multiblock (`1,474,560 su` + `100,000 FE/t`):**
+  - Build a `4×2×2` structure with `1× MK-V Reactor Controller`, `2+ MK-V Reactor Cores`, and `Titanium Casings`.
+  - Flip a Redstone Lever ON to output **`1,474,560 su`** (**5× Max Level-18 Create Steam Engines** at `256 RPM`) directly into Create shafts + **`100,000 FE/t`**.
+- **Ascension Helmet = Built-in Engineer's Goggles:** Wearing the **Ascension Helmet** automatically displays Create SU, RPM, Boiler Status, and Fluid levels without needing Engineer's Goggles.
+- **Steampunk / Sci-Fi Visual Overhaul:** Crisp `32×32` icons and matching 3D worn armor textures for the Exosuit, Jetpack, Railgun, Quantum Circuit, Magnet Ring, Warp Beacon, and Warp Linker.
+- **Blaze Powder Jetpack + Car/Bike HUD:** Fueled by **Blaze Powder** (`10` = `100%`) with a live bottom-right dashboard showing `km/h` speed, `ODO (km)` distance traveled, and fuel gauge.
 
 ---
 
 ## Installation (Multiplayer & SKlauncher)
 
-1. Download [godtechascension-2.0.0.jar](./godtechascension-2.0.0.jar) (and remove any older `1.0.0` JAR).
+1. Download [godtechascension-3.0.0.jar](./godtechascension-3.0.0.jar) (and remove any older `1.0.0` / `2.0.0` JAR).
 2. Place it in **both** your dedicated server's `mods/` folder **and** you & your friend's SKlauncher `mods/` folders (NeoForge `1.21.1`).
 3. Search `@godtechascension` in **JEI**, or hover any item and **hold `W`** for the animated guide!

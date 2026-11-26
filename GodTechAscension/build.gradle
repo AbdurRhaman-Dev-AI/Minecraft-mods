@@ -57,6 +57,11 @@ neoForge {
 
 dependencies {
     compileOnly "mezz.jei:jei-1.21.1-neoforge-api:${jei_version}"
+    def createJar = file("C:/Users/rafer/AppData/Roaming/.minecraft/instances/23d64aae08ab43ad98e3e559a0f5fb3b/mods/create-1.21.1-6.0.10.jar")
+    if (createJar.exists()) {
+        compileOnly files(createJar)
+        compileOnly fileTree(".gradle/create-jarjar")
+    }
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation "net.neoforged:testframework:${neo_version}"

@@ -49,6 +49,10 @@ public final class ModItems {
             ModBlocks.ALLOY_SYNTHESIZER, new Item.Properties().rarity(Rarity.RARE).fireResistant());
     public static final DeferredItem<BlockItem> QUANTUM_WARP_BEACON = ITEMS.registerSimpleBlockItem(
             ModBlocks.QUANTUM_WARP_BEACON, new Item.Properties().rarity(Rarity.RARE).fireResistant());
+    public static final DeferredItem<BlockItem> MKV_REACTOR_CORE = ITEMS.registerSimpleBlockItem(
+            ModBlocks.MKV_REACTOR_CORE, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
+    public static final DeferredItem<BlockItem> MKV_REACTOR_CONTROLLER = ITEMS.registerSimpleBlockItem(
+            ModBlocks.MKV_REACTOR_CONTROLLER, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
 
     // Create-style materials & sci-fi components
     public static final DeferredItem<Item> RAW_TITANIUM = ITEMS.registerSimpleItem("raw_titanium");

@@ -134,10 +134,24 @@ public final class GodTechGuideData {
         ));
 
         map.put(ModItems.ARC_REACTOR.get(), new GuideEntry(
-                "Tier 4 - Max Power Generator",
+                "Tier 4 - Compact Power Generator",
                 "Crafted from Titanium Casing, God Core, Quantum Circuits, and Redstone Blocks.",
-                "Generates 16,384 FE/t (1M FE buffer) and auto-pushes FE into adjacent PowerGrid wires and machines.",
-                List.of(ModItems.ALLOY_SYNTHESIZER.get(), ModItems.GOD_CORE.get(), ModItems.TITANIUM_CASING.get())
+                "Generates 100,000 FE/t (10M FE buffer) and auto-pushes FE into adjacent PowerGrid wires and machines.",
+                List.of(ModItems.MKV_REACTOR_CONTROLLER.get(), ModItems.ALLOY_SYNTHESIZER.get(), ModItems.GOD_CORE.get())
+        ));
+
+        map.put(ModItems.MKV_REACTOR_CONTROLLER.get(), new GuideEntry(
+                "Tier 5 - 4x2x2 Industrial Reactor",
+                "Crafted from Arc Reactor, Titanium Casing, God Core, and Reinforced Mechanisms.",
+                "Build a 4x2x2 multiblock with Titanium Casings + 2+ MK-V Reactor Cores. Flip a Lever ON to output 1,474,560 su (5x Max Steam Engines) + 100,000 FE/t!",
+                List.of(ModItems.MKV_REACTOR_CORE.get(), ModItems.TITANIUM_CASING.get(), ModItems.ARC_REACTOR.get())
+        ));
+
+        map.put(ModItems.MKV_REACTOR_CORE.get(), new GuideEntry(
+                "Tier 5 - Multiblock Plasma Core",
+                "Crafted from God Core, Singularity Shards, Quantum Circuits, and Titanium Alloy.",
+                "Place at least 2 inside a 4x2x2 MK-V Reactor multiblock alongside Titanium Casings and the MK-V Controller.",
+                List.of(ModItems.MKV_REACTOR_CONTROLLER.get(), ModItems.TITANIUM_CASING.get(), ModItems.GOD_CORE.get())
         ));
 
         map.put(ModItems.ALLOY_SYNTHESIZER.get(), new GuideEntry(
@@ -192,7 +206,7 @@ public final class GodTechGuideData {
         map.put(ModItems.ASCENSION_HELMET.get(), new GuideEntry(
                 "Tier 4 - Ascension Exosuit",
                 "Crafted from Titanium Alloy, Quantum Circuit, and God Crystal.",
-                "Unbreakable & lava-proof. Grants Night Vision and Water Breathing while worn.",
+                "Unbreakable & lava-proof. Grants Night Vision, Water Breathing, and built-in Create Engineer's Goggles!",
                 List.of(ModItems.ASCENSION_CHESTPLATE.get(), ModItems.ASCENSION_JETPACK.get(), ModItems.ASCENSION_BOOTS.get())
         ));
 
@@ -205,8 +219,8 @@ public final class GodTechGuideData {
 
         map.put(ModItems.ASCENSION_JETPACK.get(), new GuideEntry(
                 "Tier 4 - Sci-Fi Flight",
-                "Crafted from Ascension Chestplate (or Titanium Alloy + God Core + Reinforced Mechanism + Thrusters).",
-                "Unbreakable & lava-proof. Equip in chest slot to fly smoothly with thruster particles & fall immunity.",
+                "Crafted from Titanium Alloy, Reinforced Mechanism, God Core, and Blaze Rods. Refuel with Blaze Powder.",
+                "Unbreakable & lava-proof. Right-click with Blaze Powder to fuel (10x = 100%). Shows live km/h speed, km odometer, and fuel HUD.",
                 List.of(ModItems.ASCENSION_CHESTPLATE.get(), ModItems.GOD_CORE.get(), ModItems.REINFORCED_MECHANISM.get())
         ));
 

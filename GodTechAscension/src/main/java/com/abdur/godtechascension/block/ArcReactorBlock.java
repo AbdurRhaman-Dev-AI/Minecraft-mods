@@ -59,7 +59,7 @@ public class ArcReactorBlock extends BaseEntityBlock {
             int stored = reactor.getEnergyStorage().getEnergyStored();
             int max = reactor.getEnergyStorage().getMaxEnergyStored();
             player.displayClientMessage(
-                    Component.literal(String.format("Arc Reactor: %,d / %,d FE (+16,384 FE/t)", stored, max))
+                    Component.literal(String.format("Arc Reactor: %,d / %,d FE (+100,000 FE/t)", stored, max))
                             .withStyle(ChatFormatting.AQUA),
                     true
             );

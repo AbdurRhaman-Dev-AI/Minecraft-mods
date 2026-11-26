@@ -12,12 +12,12 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
- * Generates 16,384 FE/t continuously and pushes FE to all 6 adjacent blocks.
+ * Generates 100,000 FE/t continuously and pushes FE to all 6 adjacent blocks.
  */
 public class ArcReactorBlockEntity extends BlockEntity {
 
-    public static final int CAPACITY = 1_000_000;
-    public static final int GENERATION_PER_TICK = 16_384;
+    public static final int CAPACITY = 10_000_000;
+    public static final int GENERATION_PER_TICK = 100_000;
 
     private final ModEnergyStorage energy = new ModEnergyStorage(
             CAPACITY, 0, GENERATION_PER_TICK * 2, this::setChanged);

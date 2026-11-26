@@ -58,6 +58,8 @@ public class GodTechJeiPlugin implements IModPlugin {
         addInfo(registration, ModItems.DEEPSLATE_TITANIUM_ORE.get(), "jei.godtechascension.info.titanium_ore");
         addInfo(registration, ModItems.TITANIUM_CASING.get(), "jei.godtechascension.info.titanium_casing");
         addInfo(registration, ModItems.ARC_REACTOR.get(), "jei.godtechascension.info.arc_reactor");
+        addInfo(registration, ModItems.MKV_REACTOR_CONTROLLER.get(), "jei.godtechascension.info.mkv_reactor_controller");
+        addInfo(registration, ModItems.MKV_REACTOR_CORE.get(), "jei.godtechascension.info.mkv_reactor_core");
         addInfo(registration, ModItems.ALLOY_SYNTHESIZER.get(), "jei.godtechascension.info.alloy_synthesizer");
         addInfo(registration, ModItems.QUANTUM_WARP_BEACON.get(), "jei.godtechascension.info.quantum_warp_beacon");
         addInfo(registration, ModItems.RAW_TITANIUM.get(), "jei.godtechascension.info.raw_titanium");

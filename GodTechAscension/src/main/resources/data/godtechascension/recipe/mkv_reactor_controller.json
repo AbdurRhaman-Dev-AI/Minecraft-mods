@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": { "item": "godtechascension:titanium_casing" },
+    "M": { "item": "godtechascension:reinforced_mechanism" },
+    "R": { "item": "godtechascension:arc_reactor" },
+    "G": { "item": "godtechascension:god_core" }
+  },
+  "pattern": [
+    "CMC",
+    "RGR",
+    "CMC"
+  ],
+  "result": { "id": "godtechascension:mkv_reactor_controller", "count": 1 }
+}

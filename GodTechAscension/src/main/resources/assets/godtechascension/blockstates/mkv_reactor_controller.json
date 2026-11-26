@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "facing=north": { "model": "godtechascension:block/mkv_reactor_controller" },
+    "facing=east":  { "model": "godtechascension:block/mkv_reactor_controller", "y": 90 },
+    "facing=south": { "model": "godtechascension:block/mkv_reactor_controller", "y": 180 },
+    "facing=west":  { "model": "godtechascension:block/mkv_reactor_controller", "y": 270 },
+    "facing=up":    { "model": "godtechascension:block/mkv_reactor_controller" },
+    "facing=down":  { "model": "godtechascension:block/mkv_reactor_controller" },
+    "":             { "model": "godtechascension:block/mkv_reactor_controller" }
+  }
+}

@@ -120,12 +120,17 @@ public class GodTechServerTest {
         AlloySynthesizerBlockEntity synth = new AlloySynthesizerBlockEntity(
                 BlockPos.ZERO, ModBlocks.ALLOY_SYNTHESIZER.get().defaultBlockState());
 
-        // Test ModEnergyStorage generation & clamping
+        // Test ModEnergyStorage generation & clamping (100k FE/t, 10M FE cap)
         ModEnergyStorage reactorEnergy = (ModEnergyStorage) reactor.getEnergyStorage();
         reactorEnergy.addEnergy(ArcReactorBlockEntity.GENERATION_PER_TICK);
-        assertEquals(16_384, reactorEnergy.getEnergyStored());
-        reactorEnergy.addEnergy(2_000_000);
-        assertEquals(ArcReactorBlockEntity.CAPACITY, reactorEnergy.getEnergyStored(), "Capacity must clamp at 1,000,000 FE");
+        assertEquals(100_000, reactorEnergy.getEnergyStored());
+        reactorEnergy.addEnergy(20_000_000);
+        assertEquals(ArcReactorBlockEntity.CAPACITY, reactorEnergy.getEnergyStored(), "Capacity must clamp at 10,000,000 FE");
+
+        // Verify MK-V Create stress capacity math = 5x Max Level-18 Steam Engines (1,474,560 su)
+        assertEquals(1_474_560.0F,
+                com.abdur.godtechascension.compat.create.CreateMkvReactorBlockEntity.STRESS_CAPACITY_PER_RPM * 256.0F,
+                0.1F);
 
         // Test automation item handler slot guards (slots 0,1 insert only; slot 2 extract only)
         IItemHandler auto = synth.getAutomationItemHandler();
