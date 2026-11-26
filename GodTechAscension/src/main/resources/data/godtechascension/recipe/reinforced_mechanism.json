@@ -1,0 +1,16 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": { "item": "godtechascension:titanium_sheet" },
+    "G": { "item": "minecraft:gold_ingot" },
+    "C": { "item": "minecraft:copper_ingot" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "pattern": [
+    "SGS",
+    "CRC",
+    "SGS"
+  ],
+  "result": { "id": "godtechascension:reinforced_mechanism", "count": 1 }
+}

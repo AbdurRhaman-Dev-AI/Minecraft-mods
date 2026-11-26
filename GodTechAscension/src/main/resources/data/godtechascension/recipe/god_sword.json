@@ -1,0 +1,15 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": { "item": "godtechascension:titanium_alloy" },
+    "C": { "item": "godtechascension:god_core" },
+    "V": { "item": "godtechascension:void_shard" }
+  },
+  "pattern": [
+    " A ",
+    "ACA",
+    " V "
+  ],
+  "result": { "id": "godtechascension:god_sword", "count": 1 }
+}

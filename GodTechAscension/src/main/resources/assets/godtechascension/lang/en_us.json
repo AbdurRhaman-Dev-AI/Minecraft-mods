@@ -1,0 +1,38 @@
+{
+  "itemGroup.godtechascension": "GodTech: Ascension",
+
+  "block.godtechascension.titanium_ore": "Titanium Ore",
+  "block.godtechascension.deepslate_titanium_ore": "Deepslate Titanium Ore",
+  "block.godtechascension.titanium_casing": "Titanium Casing",
+
+  "item.godtechascension.raw_titanium": "Raw Titanium",
+  "item.godtechascension.crushed_raw_titanium": "Crushed Raw Titanium",
+  "item.godtechascension.titanium_ingot": "Titanium Ingot",
+  "item.godtechascension.titanium_sheet": "Titanium Sheet",
+  "item.godtechascension.titanium_alloy": "Titanium Alloy",
+  "item.godtechascension.reinforced_mechanism": "Reinforced Mechanism",
+  "item.godtechascension.god_crystal": "God Crystal",
+  "item.godtechascension.void_shard": "Void Shard",
+  "item.godtechascension.quantum_circuit": "Quantum Circuit",
+  "item.godtechascension.god_core": "God Core",
+  "item.godtechascension.god_pickaxe": "God Pickaxe",
+  "item.godtechascension.god_sword": "God Sword",
+
+  "tooltip.godtechascension.god_pickaxe": "Mines a 3x3 area (hold Sneak for 1x1).",
+  "tooltip.godtechascension.god_sword": "Right-Click: Unleashes an AoE Energy Slash (3s cooldown).",
+
+  "jei.godtechascension.info.titanium_ore": "Generates underground between Y = -64 and Y = 32. Mine with an Iron Pickaxe or better to obtain Raw Titanium (affected by Fortune).",
+  "jei.godtechascension.info.titanium_casing": "Industrial casing block crafted from Titanium Sheets, Iron Ingots, and Redstone. Used for high-tier builds and upcoming GodTech machines.",
+  "jei.godtechascension.info.raw_titanium": "Mined from Titanium Ore. Smelt or blast into a Titanium Ingot, or combine with Flint to make Crushed Raw Titanium.",
+  "jei.godtechascension.info.crushed_raw_titanium": "Create-style crushed titanium intermediate. Smelt or blast into a Titanium Ingot.",
+  "jei.godtechascension.info.titanium_ingot": "Refined from Raw Titanium or Crushed Raw Titanium. Craft 4 in a 2x2 grid for Titanium Sheets, or alloy with Iron and Copper for Titanium Alloy.",
+  "jei.godtechascension.info.titanium_sheet": "Pressed industrial plate made from Titanium Ingots. Used to craft Titanium Casing and Reinforced Mechanisms.",
+  "jei.godtechascension.info.titanium_alloy": "High-strength industrial alloy made from Iron, Titanium, and Copper. Required for Quantum Circuits, God Pickaxe, and God Sword.",
+  "jei.godtechascension.info.reinforced_mechanism": "Precision mechanical assembly crafted from Titanium Sheets, Gold, Copper, and Redstone. Used in the God Pickaxe and advanced machines.",
+  "jei.godtechascension.info.god_crystal": "Radiant energy crystal crafted from Diamond, Amethyst Shards, Blaze Powder, and Redstone. Core ingredient for Quantum Circuits and God Cores.",
+  "jei.godtechascension.info.void_shard": "Condensed void material crafted from Obsidian, Ender Pearls, and Amethyst Shards. Used in the God Pickaxe and God Sword.",
+  "jei.godtechascension.info.quantum_circuit": "Advanced circuit board crafted from Redstone, Gold, Titanium Alloy, and a God Crystal. Used to craft the God Core.",
+  "jei.godtechascension.info.god_core": "Endgame Ascension core crafted from God Crystals, Quantum Circuits, and a Nether Star. Powers the God Pickaxe and God Sword.",
+  "jei.godtechascension.info.god_pickaxe": "Endgame pickaxe that mines a 3x3 area at once. Hold Sneak while mining to break a single 1x1 block.",
+  "jei.godtechascension.info.god_sword": "Endgame blade. Right-click to unleash a 5-block AoE Energy Slash (3-second cooldown) that damages and knocks back nearby enemies."
+}

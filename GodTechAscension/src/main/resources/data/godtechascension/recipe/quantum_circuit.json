@@ -1,0 +1,16 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "G": { "item": "minecraft:gold_ingot" },
+    "A": { "item": "godtechascension:titanium_alloy" },
+    "C": { "item": "godtechascension:god_crystal" }
+  },
+  "pattern": [
+    "RGR",
+    "ACA",
+    "RGR"
+  ],
+  "result": { "id": "godtechascension:quantum_circuit", "count": 1 }
+}
