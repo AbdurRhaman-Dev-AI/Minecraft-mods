@@ -1,0 +1,8 @@
+{
+  "type": "godtechascension:alloy_synthesizing",
+  "input_a": { "item": "godtechascension:god_crystal" },
+  "input_b": { "item": "godtechascension:void_shard" },
+  "result": { "id": "godtechascension:singularity_shard", "count": 2 },
+  "energy": 8000,
+  "ticks": 50
+}

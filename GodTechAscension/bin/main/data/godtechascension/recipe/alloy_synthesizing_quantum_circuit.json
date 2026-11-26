@@ -1,0 +1,8 @@
+{
+  "type": "godtechascension:alloy_synthesizing",
+  "input_a": { "item": "godtechascension:titanium_alloy" },
+  "input_b": { "item": "godtechascension:god_crystal" },
+  "result": { "id": "godtechascension:quantum_circuit", "count": 2 },
+  "energy": 4000,
+  "ticks": 40
+}

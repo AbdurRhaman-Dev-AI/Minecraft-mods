@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": { "item": "godtechascension:titanium_alloy" },
+    "S": { "item": "godtechascension:singularity_shard" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "pattern": [
+    "ASA",
+    "R R",
+    "AAA"
+  ],
+  "result": { "id": "godtechascension:quantum_magnet_ring", "count": 1 }
+}

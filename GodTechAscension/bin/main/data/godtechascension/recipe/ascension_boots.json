@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": { "item": "godtechascension:titanium_alloy" },
+    "V": { "item": "godtechascension:void_shard" },
+    "C": { "item": "godtechascension:god_crystal" }
+  },
+  "pattern": [
+    "V V",
+    "ACA"
+  ],
+  "result": { "id": "godtechascension:ascension_boots", "count": 1 }
+}

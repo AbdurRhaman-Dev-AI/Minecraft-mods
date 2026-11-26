@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": { "item": "godtechascension:titanium_alloy" },
+    "S": { "item": "godtechascension:singularity_shard" },
+    "G": { "item": "godtechascension:god_core" }
+  },
+  "pattern": [
+    "A A",
+    "SGA",
+    "AAA"
+  ],
+  "result": { "id": "godtechascension:ascension_chestplate", "count": 1 }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": { "item": "godtechascension:titanium_alloy" },
+    "Q": { "item": "godtechascension:quantum_circuit" },
+    "C": { "item": "godtechascension:god_crystal" }
+  },
+  "pattern": [
+    "ACA",
+    "AQA"
+  ],
+  "result": { "id": "godtechascension:ascension_helmet", "count": 1 }
+}

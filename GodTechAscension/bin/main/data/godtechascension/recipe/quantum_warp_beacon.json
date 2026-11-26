@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": { "item": "godtechascension:titanium_casing" },
+    "V": { "item": "godtechascension:void_shard" },
+    "Q": { "item": "godtechascension:quantum_circuit" },
+    "E": { "item": "minecraft:ender_pearl" }
+  },
+  "pattern": [
+    "VEV",
+    "CQC",
+    "VEV"
+  ],
+  "result": { "id": "godtechascension:quantum_warp_beacon", "count": 1 }
+}

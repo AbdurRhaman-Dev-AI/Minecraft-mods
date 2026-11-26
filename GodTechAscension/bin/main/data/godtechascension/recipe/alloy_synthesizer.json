@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": { "item": "godtechascension:titanium_casing" },
+    "M": { "item": "godtechascension:reinforced_mechanism" },
+    "Q": { "item": "godtechascension:quantum_circuit" },
+    "B": { "item": "minecraft:blast_furnace" }
+  },
+  "pattern": [
+    "CQC",
+    "MBM",
+    "CQC"
+  ],
+  "result": { "id": "godtechascension:alloy_synthesizer", "count": 1 }
+}

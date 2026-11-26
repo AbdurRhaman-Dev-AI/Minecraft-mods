@@ -4,11 +4,11 @@ license = "MIT"
 
 [[mods]]
 modId = "godtechascension"
-version = "1.0.0"
+version = "2.0.0"
 displayName = "GodTech: Ascension"
 authors = "Abdur"
 description = '''
-Endgame industrial progression mod designed to complement Create, TFMG, Diesel Generators, Nuclear, PowerGrid, and Aeronautics with custom materials, Titanium worldgen, JEI integration, and God-tier tools.
+Endgame sci-fi industrial progression mod with Arc Reactors, Alloy Synthesizers, Ascension Exosuit, Jetpack, Plasma Railgun, Warp Beacons, JEI support, and Hold [W] animated guides.
 '''
 
 [[dependencies.godtechascension]]

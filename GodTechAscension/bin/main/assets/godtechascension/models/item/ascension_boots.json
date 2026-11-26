@@ -1,0 +1,1 @@
+﻿{ "parent": "minecraft:item/generated", "textures": { "layer0": "godtechascension:item/ascension_boots" } }

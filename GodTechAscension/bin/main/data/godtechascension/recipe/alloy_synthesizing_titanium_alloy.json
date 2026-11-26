@@ -1,0 +1,8 @@
+{
+  "type": "godtechascension:alloy_synthesizing",
+  "input_a": { "item": "godtechascension:titanium_ingot" },
+  "input_b": { "item": "minecraft:iron_ingot" },
+  "result": { "id": "godtechascension:titanium_alloy", "count": 2 },
+  "energy": 2000,
+  "ticks": 30
+}

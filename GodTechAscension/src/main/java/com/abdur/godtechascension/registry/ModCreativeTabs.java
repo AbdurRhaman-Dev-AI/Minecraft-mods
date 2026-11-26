@@ -20,11 +20,15 @@ public final class ModCreativeTabs {
             "godtech_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup." + GodTechAscension.MODID))
-                    .icon(() -> new ItemStack(ModItems.GOD_CORE.get()))
+                    .icon(() -> new ItemStack(ModItems.ARC_REACTOR.get()))
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.TITANIUM_ORE.get());
                         output.accept(ModItems.DEEPSLATE_TITANIUM_ORE.get());
                         output.accept(ModItems.TITANIUM_CASING.get());
+                        output.accept(ModItems.ARC_REACTOR.get());
+                        output.accept(ModItems.ALLOY_SYNTHESIZER.get());
+                        output.accept(ModItems.QUANTUM_WARP_BEACON.get());
+
                         output.accept(ModItems.RAW_TITANIUM.get());
                         output.accept(ModItems.CRUSHED_RAW_TITANIUM.get());
                         output.accept(ModItems.TITANIUM_INGOT.get());
@@ -34,9 +38,20 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.GOD_CRYSTAL.get());
                         output.accept(ModItems.VOID_SHARD.get());
                         output.accept(ModItems.QUANTUM_CIRCUIT.get());
+                        output.accept(ModItems.SINGULARITY_SHARD.get());
                         output.accept(ModItems.GOD_CORE.get());
+
                         output.accept(ModItems.GOD_PICKAXE.get());
                         output.accept(ModItems.GOD_SWORD.get());
+                        output.accept(ModItems.PLASMA_RAILGUN.get());
+                        output.accept(ModItems.QUANTUM_MAGNET_RING.get());
+                        output.accept(ModItems.QUANTUM_WARP_LINKER.get());
+
+                        output.accept(ModItems.ASCENSION_HELMET.get());
+                        output.accept(ModItems.ASCENSION_CHESTPLATE.get());
+                        output.accept(ModItems.ASCENSION_JETPACK.get());
+                        output.accept(ModItems.ASCENSION_LEGGINGS.get());
+                        output.accept(ModItems.ASCENSION_BOOTS.get());
                     })
                     .build()
     );

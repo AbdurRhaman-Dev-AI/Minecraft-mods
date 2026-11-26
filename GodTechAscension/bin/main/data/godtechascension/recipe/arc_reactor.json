@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": { "item": "godtechascension:titanium_casing" },
+    "Q": { "item": "godtechascension:quantum_circuit" },
+    "G": { "item": "godtechascension:god_core" },
+    "R": { "item": "minecraft:redstone_block" }
+  },
+  "pattern": [
+    "CQC",
+    "RGR",
+    "CQC"
+  ],
+  "result": { "id": "godtechascension:arc_reactor", "count": 1 }
+}

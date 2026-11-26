@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items;
 
 /**
  * Renders live 60 FPS animated demonstration scenes inside GodTechGuideScreen
- * so players immediately see how each item or tool works.
+ * so players immediately see how each item, machine, or armor piece works.
  */
 public final class GodTechGuideAnimator {
 
@@ -20,11 +20,9 @@ public final class GodTechGuideAnimator {
     }
 
     public static void renderScene(GuiGraphics g, Font font, Item item, int x, int y, int w, int h) {
-        // Stage background & crisp inner border
         g.fill(x, y, x + w, y + h, 0xFF0C1017);
         g.renderOutline(x, y, w, h, 0xFF2C5A73);
 
-        // Subtle grid lines for a Create Ponder feel
         for (int gx = x + 16; gx < x + w; gx += 16) {
             g.fill(gx, y + 1, gx + 1, y + h - 1, 0x1839C5E8);
         }
@@ -32,12 +30,28 @@ public final class GodTechGuideAnimator {
             g.fill(x + 1, gy, x + w - 1, gy + 1, 0x1839C5E8);
         }
 
-        double t = (Util.getMillis() % 4000L) / 4000.0; // 4-second smooth loop [0..1)
+        double t = (Util.getMillis() % 4000L) / 4000.0;
 
         if (item == ModItems.GOD_PICKAXE.get()) {
             renderPickaxeScene(g, font, x, y, w, h, t);
         } else if (item == ModItems.GOD_SWORD.get()) {
             renderSwordScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.PLASMA_RAILGUN.get()) {
+            renderRailgunScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.ARC_REACTOR.get()) {
+            renderArcReactorScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.ALLOY_SYNTHESIZER.get()) {
+            renderSynthesizerScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.QUANTUM_WARP_BEACON.get() || item == ModItems.QUANTUM_WARP_LINKER.get()) {
+            renderWarpScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.QUANTUM_MAGNET_RING.get()) {
+            renderMagnetScene(g, font, x, y, w, h, t);
+        } else if (item == ModItems.ASCENSION_JETPACK.get()
+                || item == ModItems.ASCENSION_HELMET.get()
+                || item == ModItems.ASCENSION_CHESTPLATE.get()
+                || item == ModItems.ASCENSION_LEGGINGS.get()
+                || item == ModItems.ASCENSION_BOOTS.get()) {
+            renderExosuitScene(g, font, item, x, y, w, h, t);
         } else if (item == ModItems.TITANIUM_ORE.get() || item == ModItems.DEEPSLATE_TITANIUM_ORE.get()) {
             renderOreScene(g, font, item, x, y, w, h, t);
         } else if (item == ModItems.RAW_TITANIUM.get() || item == ModItems.CRUSHED_RAW_TITANIUM.get()
@@ -53,7 +67,7 @@ public final class GodTechGuideAnimator {
 
     private static void renderPickaxeScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
         boolean sneakMode = t >= 0.5;
-        double phase = (t % 0.5) * 2.0; // 0..1 within each 2s half
+        double phase = (t % 0.5) * 2.0;
         boolean broken = phase > 0.55;
 
         int gridX = x + (w - 54) / 2;
@@ -81,37 +95,116 @@ public final class GodTechGuideAnimator {
             }
         }
 
-        // Swinging God Pickaxe
         int swing = (int) (Math.sin(phase * Math.PI * 3.0) * 6);
         g.renderItem(new ItemStack(ModItems.GOD_PICKAXE.get()), gridX - 18 + Math.max(0, swing), gridY + 18 + swing / 2);
 
-        String caption = sneakMode ? "Sneak [Shift]: 1x1" : "Normal: 3x3 Area";
-        int color = sneakMode ? 0xFFFFAA00 : 0xFF39C5E8;
-        drawCenteredCaption(g, font, caption, x + w / 2, y + h - 14, color);
+        String caption = sneakMode ? "Sneak: 1x1 | 10x Eff.V" : "Normal: 3x3 Unbreakable";
+        drawCenteredCaption(g, font, caption, x + w / 2, y + h - 14, sneakMode ? 0xFFFFAA00 : 0xFF39C5E8);
     }
 
     private static void renderSwordScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
         int cx = x + w / 2;
         int cy = y + 52;
 
-        // Expanding AoE shockwave ring
         double wave = (t * 2.0) % 1.0;
         int radius = 12 + (int) (wave * 34);
         int alpha = (int) ((1.0 - wave) * 220);
-        int ringColor = (alpha << 24) | 0x39C5E8;
-        g.renderOutline(cx - radius, cy - radius / 2, radius * 2, radius, ringColor);
+        g.renderOutline(cx - radius, cy - radius / 2, radius * 2, radius, (alpha << 24) | 0x39C5E8);
 
-        // Surrounding mob targets pushed outward when wave hits
         int push = wave > 0.35 ? (int) ((wave - 0.35) * 14) : 0;
         g.renderItem(new ItemStack(Items.ZOMBIE_HEAD), cx - 42 - push, cy - 10);
         g.renderItem(new ItemStack(Items.SKELETON_SKULL), cx + 26 + push, cy - 10);
         g.renderItem(new ItemStack(Items.CREEPER_HEAD), cx - 8, cy - 34 - push / 2);
 
-        // Center God Sword pulsing
         int bob = (int) (Math.sin(t * Math.PI * 4.0) * 3);
         g.renderItem(new ItemStack(ModItems.GOD_SWORD.get()), cx - 8, cy - 8 + bob);
 
-        drawCenteredCaption(g, font, "Right-Click: 5-Block AoE", cx, y + h - 14, 0xFFFFD15C);
+        drawCenteredCaption(g, font, "25 Dmg + 5-Block AoE", cx, y + h - 14, 0xFFFFD15C);
+    }
+
+    private static void renderRailgunScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
+        int cy = y + 52;
+        g.renderItem(new ItemStack(ModItems.PLASMA_RAILGUN.get()), x + 12, cy - 8);
+
+        double beamPhase = (t * 2.0) % 1.0;
+        if (beamPhase < 0.65) {
+            int beamW = (int) ((beamPhase / 0.65) * 80);
+            g.fill(x + 32, cy - 2, x + 32 + beamW, cy + 2, 0xFF39C5E8);
+            g.fill(x + 32, cy - 1, x + 32 + beamW, cy + 1, 0xFFFFFFFF);
+        }
+
+        g.renderItem(new ItemStack(Items.ZOMBIE_HEAD), x + w - 34, cy - 8);
+        g.renderItem(new ItemStack(Items.SKELETON_SKULL), x + w - 20, cy - 14);
+        drawCenteredCaption(g, font, "30m Piercing Beam (28 Dmg)", x + w / 2, y + h - 14, 0xFF55FFFF);
+    }
+
+    private static void renderArcReactorScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
+        int cx = x + w / 2;
+        int cy = y + 48;
+
+        int pulse = (int) (Math.abs(Math.sin(t * Math.PI * 4.0)) * 22);
+        g.fill(cx - 28, cy - 2, cx + 28, cy + 2, 0xFF1F384D);
+        g.fill(cx - 2 - pulse, cy - 1, cx + 2 + pulse, cy + 1, 0xFF39C5E8);
+        g.fill(cx - 2, cy - 26, cx + 2, cy + 26, 0xFF1F384D);
+        g.fill(cx - 1, cy - 2 - pulse / 2, cx + 1, cy + 2 + pulse / 2, 0xFF39C5E8);
+
+        g.renderItem(new ItemStack(ModItems.ARC_REACTOR.get()), cx - 8, cy - 8);
+        g.renderItem(new ItemStack(ModItems.ALLOY_SYNTHESIZER.get()), cx + 30, cy - 8);
+        g.renderItem(new ItemStack(Items.REDSTONE_LAMP), cx - 46, cy - 8);
+
+        drawCenteredCaption(g, font, "Outputs 16,384 FE/t", cx, y + h - 14, 0xFF55FFFF);
+    }
+
+    private static void renderSynthesizerScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
+        int cy = y + 46;
+        g.renderItem(new ItemStack(ModItems.GOD_CRYSTAL.get()), x + 12, cy - 14);
+        g.renderItem(new ItemStack(ModItems.VOID_SHARD.get()), x + 12, cy + 6);
+        g.drawString(font, "→", x + 36, cy - 2, 0x39C5E8, false);
+
+        g.renderOutline(x + 52, cy - 10, 24, 24, 0xFF39C5E8);
+        g.renderItem(new ItemStack(ModItems.ALLOY_SYNTHESIZER.get()), x + 56, cy - 6);
+
+        int prog = (int) (t * 20);
+        g.fill(x + 80, cy, x + 80 + prog, cy + 4, 0xFF55FF55);
+        g.renderItem(new ItemStack(ModItems.SINGULARITY_SHARD.get()), x + 106, cy - 6);
+
+        drawCenteredCaption(g, font, "FE-Powered Synthesis", x + w / 2, y + h - 14, 0xFF55FF55);
+    }
+
+    private static void renderWarpScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
+        int cy = y + 50;
+        g.renderItem(new ItemStack(ModItems.QUANTUM_WARP_LINKER.get()), x + 18, cy - 8);
+        g.renderItem(new ItemStack(ModItems.QUANTUM_WARP_BEACON.get()), x + w - 34, cy - 8);
+
+        int dotX = x + 38 + (int) (t * (w - 76));
+        g.fill(dotX - 2, cy - 2, dotX + 2, cy + 2, 0xFFCC66FF);
+        drawCenteredCaption(g, font, "Bind -> Instant Warp", x + w / 2, y + h - 14, 0xFFCC66FF);
+    }
+
+    private static void renderMagnetScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {
+        int cx = x + w / 2;
+        int cy = y + 50;
+        double pull = 1.0 - t;
+        int offset = (int) (pull * 36);
+
+        g.renderItem(new ItemStack(Items.DIAMOND), cx - 8 - offset, cy - 14);
+        g.renderItem(new ItemStack(ModItems.RAW_TITANIUM.get()), cx - 8 + offset, cy + 4);
+        g.renderItem(new ItemStack(ModItems.QUANTUM_MAGNET_RING.get()), cx - 8, cy - 8);
+
+        drawCenteredCaption(g, font, "8-Block Item Magnet", cx, y + h - 14, 0xFF55FFFF);
+    }
+
+    private static void renderExosuitScene(GuiGraphics g, Font font, Item item, int x, int y, int w, int h, double t) {
+        int cx = x + w / 2;
+        int cy = y + 48;
+        int bob = (int) (Math.sin(t * Math.PI * 4.0) * 5);
+        g.renderOutline(cx - 14, cy - 14 + bob, 28, 28, 0xFF39C5E8);
+        g.renderItem(new ItemStack(item), cx - 8, cy - 8 + bob);
+
+        String cap = item == ModItems.ASCENSION_JETPACK.get()
+                ? "Smooth Flight + No Fall Dmg"
+                : "Unbreakable & Lava-Proof";
+        drawCenteredCaption(g, font, cap, cx, y + h - 14, 0xFF55FFFF);
     }
 
     private static void renderOreScene(GuiGraphics g, Font font, Item oreItem, int x, int y, int w, int h, double t) {
@@ -191,6 +284,8 @@ public final class GodTechGuideAnimator {
             orbiters = new Item[]{ModItems.GOD_CRYSTAL.get(), ModItems.QUANTUM_CIRCUIT.get(), Items.NETHER_STAR};
         } else if (item == ModItems.QUANTUM_CIRCUIT.get()) {
             orbiters = new Item[]{Items.REDSTONE, Items.GOLD_INGOT, ModItems.GOD_CRYSTAL.get()};
+        } else if (item == ModItems.SINGULARITY_SHARD.get()) {
+            orbiters = new Item[]{ModItems.GOD_CRYSTAL.get(), ModItems.VOID_SHARD.get(), ModItems.ALLOY_SYNTHESIZER.get()};
         } else if (item == ModItems.VOID_SHARD.get()) {
             orbiters = new Item[]{Items.OBSIDIAN, Items.ENDER_PEARL, Items.AMETHYST_SHARD};
         } else {
