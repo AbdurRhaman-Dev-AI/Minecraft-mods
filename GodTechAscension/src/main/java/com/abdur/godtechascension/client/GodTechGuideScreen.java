@@ -13,11 +13,12 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Create-styled popup guide screen opened by holding [W] over any GodTech item.
+ * Includes a live 60 FPS animated use-case preview stage alongside obtain/usage text.
  */
 public class GodTechGuideScreen extends Screen {
 
-    private static final int PANEL_WIDTH = 340;
-    private static final int PANEL_HEIGHT = 224;
+    private static final int PANEL_WIDTH = 388;
+    private static final int PANEL_HEIGHT = 236;
 
     private final Item targetItem;
     private final @Nullable Screen previousScreen;
@@ -48,15 +49,15 @@ public class GodTechGuideScreen extends Screen {
         if (entry != null && !entry.related().isEmpty()) {
             int startX = leftPos + 14;
             int btnY = topPos + PANEL_HEIGHT - 32;
-            int btnW = 100;
-            int gap = 6;
+            int btnW = 114;
+            int gap = 8;
             int max = Math.min(3, entry.related().size());
 
             for (int i = 0; i < max; i++) {
                 Item relatedItem = entry.related().get(i);
                 String label = relatedItem.getDescription().getString();
-                if (label.length() > 15) {
-                    label = label.substring(0, 14) + "…";
+                if (label.length() > 17) {
+                    label = label.substring(0, 16) + "…";
                 }
                 this.addRenderableWidget(
                         Button.builder(
@@ -114,11 +115,11 @@ public class GodTechGuideScreen extends Screen {
                     0x55FFFF
             );
 
+            // Left column: Obtain & Usage text
             int textX = leftPos + 14;
-            int wrapWidth = PANEL_WIDTH - 28;
+            int wrapWidth = 212;
             int y = topPos + 56;
 
-            // How to Obtain
             graphics.drawString(
                     this.font,
                     Component.literal("How to Obtain").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD),
@@ -134,7 +135,6 @@ public class GodTechGuideScreen extends Screen {
 
             y += 10;
 
-            // How to Use
             graphics.drawString(
                     this.font,
                     Component.literal("How to Use").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD),
@@ -147,6 +147,13 @@ public class GodTechGuideScreen extends Screen {
                 graphics.drawString(this.font, line, textX, y, 0xE6EEF5);
                 y += 11;
             }
+
+            // Right column: Live Animated Demonstration Stage
+            int stageX = leftPos + 236;
+            int stageY = topPos + 56;
+            int stageW = 138;
+            int stageH = 122;
+            GodTechGuideAnimator.renderScene(graphics, this.font, targetItem, stageX, stageY, stageW, stageH);
 
             // Related section label
             if (!entry.related().isEmpty()) {
