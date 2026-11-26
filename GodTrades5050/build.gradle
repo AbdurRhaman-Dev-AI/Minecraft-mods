@@ -44,6 +44,21 @@ neoForge {
             sourceSet(sourceSets.main)
         }
     }
+
+    unitTest {
+        enable()
+        testedMod = mods."${mod_id}"
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation "net.neoforged:testframework:${neo_version}"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 tasks.withType(JavaCompile).configureEach {

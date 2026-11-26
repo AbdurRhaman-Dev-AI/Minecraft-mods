@@ -1,7 +1,6 @@
 package com.abdur.godtechascension.event;
 
 import com.abdur.godtechascension.GodTechAscension;
-import com.abdur.godtechascension.item.AscensionJetpackItem;
 import com.abdur.godtechascension.registry.ModBlockEntities;
 import com.abdur.godtechascension.registry.ModItems;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,10 +11,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 /**
- * Registers block capabilities and handles Ascension Exosuit / Jetpack server events.
+ * Registers block capabilities and handles Ascension Exosuit / Jetpack fall immunity.
  */
 @EventBusSubscriber(modid = GodTechAscension.MODID)
 public final class GodTechEvents {
@@ -30,24 +28,6 @@ public final class GodTechEvents {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (boots.is(ModItems.ASCENSION_BOOTS.get()) || chest.is(ModItems.ASCENSION_JETPACK.get())) {
                 event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Post event) {
-        Player player = event.getEntity();
-        if (player.level().isClientSide || player.isCreative() || player.isSpectator()) {
-            return;
-        }
-
-        if (player.getPersistentData().getBoolean(AscensionJetpackItem.TAG_JETPACK_FLIGHT)) {
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (!chest.is(ModItems.ASCENSION_JETPACK.get())) {
-                player.getPersistentData().remove(AscensionJetpackItem.TAG_JETPACK_FLIGHT);
-                player.getAbilities().mayfly = false;
-                player.getAbilities().flying = false;
-                player.onUpdateAbilities();
             }
         }
     }
@@ -72,7 +52,7 @@ public final class GodTechEvents {
             event.registerBlockEntity(
                     Capabilities.ItemHandler.BLOCK,
                     ModBlockEntities.ALLOY_SYNTHESIZER.get(),
-                    (be, side) -> be.getItemHandler()
+                    (be, side) -> be.getAutomationItemHandler()
             );
         }
     }

@@ -27,7 +27,7 @@ public class AlloySynthesizerMenu extends AbstractContainerMenu {
                 containerId,
                 playerInv,
                 (AlloySynthesizerBlockEntity) playerInv.player.level().getBlockEntity(extraData.readBlockPos()),
-                new SimpleContainerData(4)
+                new SimpleContainerData(6)
         );
     }
 
@@ -50,13 +50,11 @@ public class AlloySynthesizerMenu extends AbstractContainerMenu {
             }
         });
 
-        // Player inventory (3x9)
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
             }
         }
-        // Hotbar
         for (int col = 0; col < 9; col++) {
             this.addSlot(new Slot(playerInv, col, 8 + col * 18, 142));
         }
@@ -73,11 +71,12 @@ public class AlloySynthesizerMenu extends AbstractContainerMenu {
     }
 
     public int getEnergyStored() {
-        return data.get(2);
+        return ((data.get(3) & 0xFFFF) << 16) | (data.get(2) & 0xFFFF);
     }
 
     public int getMaxEnergy() {
-        return Math.max(1, data.get(3));
+        int max = ((data.get(5) & 0xFFFF) << 16) | (data.get(4) & 0xFFFF);
+        return Math.max(1, max);
     }
 
     @Override
@@ -104,12 +103,13 @@ public class AlloySynthesizerMenu extends AbstractContainerMenu {
         } else {
             slot.setChanged();
         }
+        slot.onTake(player, stack);
         return copy;
     }
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(
+        return blockEntity != null && stillValid(
                 ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos()),
                 player,
                 ModBlocks.ALLOY_SYNTHESIZER.get()

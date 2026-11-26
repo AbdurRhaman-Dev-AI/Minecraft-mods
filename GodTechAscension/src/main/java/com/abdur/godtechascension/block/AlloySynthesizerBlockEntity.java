@@ -19,8 +19,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,28 +41,58 @@ public class AlloySynthesizerBlockEntity extends BlockEntity implements MenuProv
         }
     };
 
-    private final EnergyStorage energy = new EnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE, 0) {
+    /**
+     * Automation-safe view: allows inserting into input slots (0, 1) and extracting only from output (2).
+     */
+    private final IItemHandler automationItems = new IItemHandler() {
         @Override
-        public int receiveEnergy(int toReceive, boolean simulate) {
-            int received = super.receiveEnergy(toReceive, simulate);
-            if (!simulate && received > 0) {
-                setChanged();
-            }
-            return received;
+        public int getSlots() {
+            return items.getSlots();
+        }
+
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return items.getStackInSlot(slot);
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            return (slot == 0 || slot == 1) ? items.insertItem(slot, stack, simulate) : stack;
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return (slot == 2) ? items.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return items.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return slot == 0 || slot == 1;
         }
     };
+
+    private final ModEnergyStorage energy = new ModEnergyStorage(
+            ENERGY_CAPACITY, MAX_RECEIVE, 0, this::setChanged);
 
     private int progress;
     private int maxProgress = 40;
 
+    // Split 32-bit FE values into low/high 16-bit chunks because ContainerData syncs shorts over the network.
     protected final ContainerData data = new ContainerData() {
         @Override
         public int get(int index) {
             return switch (index) {
                 case 0 -> progress;
                 case 1 -> maxProgress;
-                case 2 -> energy.getEnergyStored();
-                case 3 -> energy.getMaxEnergyStored();
+                case 2 -> energy.getEnergyStored() & 0xFFFF;
+                case 3 -> (energy.getEnergyStored() >>> 16) & 0xFFFF;
+                case 4 -> energy.getMaxEnergyStored() & 0xFFFF;
+                case 5 -> (energy.getMaxEnergyStored() >>> 16) & 0xFFFF;
                 default -> 0;
             };
         }
@@ -78,7 +108,7 @@ public class AlloySynthesizerBlockEntity extends BlockEntity implements MenuProv
 
         @Override
         public int getCount() {
-            return 4;
+            return 6;
         }
     };
 
@@ -88,6 +118,10 @@ public class AlloySynthesizerBlockEntity extends BlockEntity implements MenuProv
 
     public ItemStackHandler getItemHandler() {
         return items;
+    }
+
+    public IItemHandler getAutomationItemHandler() {
+        return automationItems;
     }
 
     public IEnergyStorage getEnergyStorage() {
@@ -135,7 +169,7 @@ public class AlloySynthesizerBlockEntity extends BlockEntity implements MenuProv
             return;
         }
 
-        be.consumeInternalEnergy(energyPerTick);
+        be.energy.consumeEnergy(energyPerTick);
         be.progress++;
 
         if (be.progress >= be.maxProgress) {
@@ -149,14 +183,6 @@ public class AlloySynthesizerBlockEntity extends BlockEntity implements MenuProv
             be.progress = 0;
             be.setChanged();
         }
-    }
-
-    private void consumeInternalEnergy(int amount) {
-        int next = Math.max(0, energy.getEnergyStored() - amount);
-        CompoundTag tag = new CompoundTag();
-        tag.putInt("Energy", next);
-        energy.deserializeNBT(level != null ? level.registryAccess() : null, tag.get("Energy"));
-        setChanged();
     }
 
     @Override
@@ -174,7 +200,7 @@ public class AlloySynthesizerBlockEntity extends BlockEntity implements MenuProv
             items.deserializeNBT(registries, tag.getCompound("Items"));
         }
         if (tag.contains("Energy")) {
-            energy.deserializeNBT(registries, tag.get("Energy"));
+            energy.setEnergy(tag.getInt("Energy"));
         }
         progress = tag.getInt("Progress");
     }

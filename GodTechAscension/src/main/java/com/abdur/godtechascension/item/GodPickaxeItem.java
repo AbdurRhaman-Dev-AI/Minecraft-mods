@@ -55,7 +55,9 @@ public class GodPickaxeItem extends PickaxeItem {
                     }
                     BlockPos target = offsetOnPlane(center, face, a, b);
                     BlockState targetState = level.getBlockState(target);
-                    if (targetState.isAir() || targetState.getDestroySpeed(level, target) < 0) {
+                    if (targetState.isAir()
+                            || targetState.getDestroySpeed(level, target) < 0
+                            || targetState.hasBlockEntity()) {
                         continue;
                     }
                     if (isCorrectToolForDrops(player.getMainHandItem(), targetState)) {

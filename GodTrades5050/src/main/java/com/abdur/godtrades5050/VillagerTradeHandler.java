@@ -62,6 +62,10 @@ public final class VillagerTradeHandler {
             }
 
             ItemStack reward = createGodItem(trader.registryAccess(), profession, random);
+            return createGodOffer(reward);
+        }
+
+        public static MerchantOffer createGodOffer(ItemStack reward) {
             return new MerchantOffer(
                     new ItemCost(Items.EMERALD, 1),
                     reward,
@@ -71,7 +75,7 @@ public final class VillagerTradeHandler {
             );
         }
 
-        private static ItemStack createGodItem(
+        public static ItemStack createGodItem(
                 HolderLookup.Provider registries,
                 VillagerProfession profession,
                 RandomSource random

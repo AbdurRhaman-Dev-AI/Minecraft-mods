@@ -9,7 +9,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
@@ -20,16 +19,8 @@ public class ArcReactorBlockEntity extends BlockEntity {
     public static final int CAPACITY = 1_000_000;
     public static final int GENERATION_PER_TICK = 16_384;
 
-    private final EnergyStorage energy = new EnergyStorage(CAPACITY, 0, GENERATION_PER_TICK * 2) {
-        @Override
-        public int extractEnergy(int toExtract, boolean simulate) {
-            int extracted = super.extractEnergy(toExtract, simulate);
-            if (!simulate && extracted > 0) {
-                setChanged();
-            }
-            return extracted;
-        }
-    };
+    private final ModEnergyStorage energy = new ModEnergyStorage(
+            CAPACITY, 0, GENERATION_PER_TICK * 2, this::setChanged);
 
     public ArcReactorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ARC_REACTOR.get(), pos, state);
@@ -40,10 +31,8 @@ public class ArcReactorBlockEntity extends BlockEntity {
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, ArcReactorBlockEntity reactor) {
-        int current = reactor.energy.getEnergyStored();
-        if (current < CAPACITY) {
-            int next = Math.min(CAPACITY, current + GENERATION_PER_TICK);
-            reactor.setInternalEnergy(next);
+        if (reactor.energy.getEnergyStored() < CAPACITY) {
+            reactor.energy.addEnergy(GENERATION_PER_TICK);
         }
 
         if (reactor.energy.getEnergyStored() <= 0) {
@@ -63,13 +52,6 @@ public class ArcReactorBlockEntity extends BlockEntity {
         }
     }
 
-    private void setInternalEnergy(int value) {
-        CompoundTag tag = new CompoundTag();
-        tag.putInt("Energy", Math.max(0, Math.min(CAPACITY, value)));
-        energy.deserializeNBT(level != null ? level.registryAccess() : null, tag.get("Energy"));
-        setChanged();
-    }
-
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
@@ -80,7 +62,7 @@ public class ArcReactorBlockEntity extends BlockEntity {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         if (tag.contains("Energy")) {
-            energy.deserializeNBT(registries, tag.get("Energy"));
+            energy.setEnergy(tag.getInt("Energy"));
         }
     }
 }
