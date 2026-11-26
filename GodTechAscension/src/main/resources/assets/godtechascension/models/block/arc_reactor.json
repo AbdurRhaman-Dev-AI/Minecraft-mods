@@ -1,4 +1,4 @@
-﻿{
+{
   "parent": "minecraft:block/block",
   "textures": {
     "teal": "godtechascension:block/arc_reactor_teal",
