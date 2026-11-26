@@ -1,0 +1,8 @@
+﻿{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.8,
+  "ingredient": { "item": "godtechascension:crushed_raw_titanium" },
+  "result": { "id": "godtechascension:titanium_ingot" }
+}

@@ -1,0 +1,15 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "T": { "item": "godtechascension:titanium_ingot" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "pattern": [
+    "ITI",
+    "C C",
+    "ITI"
+  ],
+  "result": { "id": "godtechascension:titanium_alloy", "count": 2 }
+}

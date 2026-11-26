@@ -19,6 +19,7 @@ All items follow **Create-style naming** and register **JEI Info & Recipe entrie
   - **God Pickaxe:** High-speed mining with **`3×3` area mining** (hold `Shift`/sneak to mine `1×1`).
   - **God Sword:** High damage with a **Right-Click AoE Energy Slash** (`3`-second cooldown) that damages nearby hostile mobs.
 - **Full JEI Integration:** Every item has an **Info** tab in JEI explaining how to obtain and use it, plus all crafting, smelting, and blasting recipes.
+- **Hold `[W]` for Guide:** Hover over any `GodTech` item or block (in your inventory, Creative tab, or JEI) and hold `W` to open a Create-style popup panel showing how to obtain it, how to use it, and clickable links to related progression items.
 
 ---
 

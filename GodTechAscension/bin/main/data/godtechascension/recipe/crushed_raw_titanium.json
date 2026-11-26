@@ -1,0 +1,9 @@
+﻿{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "godtechascension:raw_titanium" },
+    { "item": "minecraft:flint" }
+  ],
+  "result": { "id": "godtechascension:crushed_raw_titanium", "count": 1 }
+}

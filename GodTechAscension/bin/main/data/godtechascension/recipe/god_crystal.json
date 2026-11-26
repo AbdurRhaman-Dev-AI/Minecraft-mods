@@ -1,0 +1,16 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": { "item": "minecraft:diamond" },
+    "A": { "item": "minecraft:amethyst_shard" },
+    "B": { "item": "minecraft:blaze_powder" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "pattern": [
+    "ABA",
+    "RDR",
+    "ABA"
+  ],
+  "result": { "id": "godtechascension:god_crystal", "count": 1 }
+}

@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "godtechascension"
+version = "1.0.0"
+displayName = "GodTech: Ascension"
+authors = "Abdur"
+description = '''
+Endgame industrial progression mod designed to complement Create, TFMG, Diesel Generators, Nuclear, PowerGrid, and Aeronautics with custom materials, Titanium worldgen, JEI integration, and God-tier tools.
+'''
+
+[[dependencies.godtechascension]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.godtechascension]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.godtechascension]]
+modId = "jei"
+type = "optional"
+versionRange = "[19.0,)"
+ordering = "NONE"
+side = "CLIENT"
