@@ -39,7 +39,7 @@
   "tooltip.godtechascension.quantum_warp_linker": "Right-Click a Quantum Warp Beacon to bind, then Right-Click to teleport.",
   "tooltip.godtechascension.ascension_helmet": "Unbreakable & Lava-Proof. Grants Night Vision + Water Breathing.",
   "tooltip.godtechascension.ascension_chestplate": "Unbreakable & Lava-Proof. Grants Fire Resistance.",
-  "tooltip.godtechascension.ascension_jetpack": "Unbreakable & Lava-Proof. Grants smooth Flight + Fall Immunity.",
+  "tooltip.godtechascension.ascension_jetpack": "Unbreakable & Lava-Proof. Powered by Blaze Powder; includes km/h & km Odometer HUD.",
   "tooltip.godtechascension.ascension_leggings": "Unbreakable & Lava-Proof. Grants Speed II.",
   "tooltip.godtechascension.ascension_boots": "Unbreakable & Lava-Proof. Grants Fall-Damage Immunity.",
 
@@ -66,7 +66,7 @@
   "jei.godtechascension.info.quantum_warp_linker": "Right-click a Quantum Warp Beacon to bind, then right-click anywhere to teleport back across dimensions.",
   "jei.godtechascension.info.ascension_helmet": "Unbreakable, lava-proof Exosuit Helmet. Grants Night Vision and Water Breathing.",
   "jei.godtechascension.info.ascension_chestplate": "Unbreakable, lava-proof Exosuit Chestplate. Grants Fire Resistance.",
-  "jei.godtechascension.info.ascension_jetpack": "Unbreakable, lava-proof Jetpack. Equip in the chest slot for smooth flight and fall-damage immunity.",
+  "jei.godtechascension.info.ascension_jetpack": "Unbreakable, lava-proof Jetpack fueled by Blaze Powder (right-click with Blaze Powder in inventory or hand). Displays a live km/h speedometer, km odometer, and fuel gauge HUD.",
   "jei.godtechascension.info.ascension_leggings": "Unbreakable, lava-proof Exosuit Leggings. Grants Speed II.",
   "jei.godtechascension.info.ascension_boots": "Unbreakable, lava-proof Exosuit Boots. Grants Fall-Damage Immunity."
 }

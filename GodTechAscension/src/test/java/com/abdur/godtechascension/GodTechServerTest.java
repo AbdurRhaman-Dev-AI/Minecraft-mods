@@ -49,13 +49,28 @@ public class GodTechServerTest {
         assertEquals(25.0, 1.0 + swordDamage.get(), 0.01, "God Sword total attack damage must equal 25");
 
         ItemStack jetpack = new ItemStack(ModItems.ASCENSION_JETPACK.get());
-        AtomicBoolean grantsFlight = new AtomicBoolean(false);
+        AtomicBoolean emptyGrantsFlight = new AtomicBoolean(false);
         jetpack.getAttributeModifiers().forEach(EquipmentSlotGroup.CHEST, (attr, mod) -> {
             if (attr.equals(NeoForgeMod.CREATIVE_FLIGHT) && mod.amount() >= 1.0) {
-                grantsFlight.set(true);
+                emptyGrantsFlight.set(true);
             }
         });
-        assertTrue(grantsFlight.get(), "Ascension Jetpack must grant CREATIVE_FLIGHT attribute");
+        assertFalse(emptyGrantsFlight.get(), "Empty Jetpack (0 fuel) must NOT grant CREATIVE_FLIGHT");
+
+        // Refuel with Blaze Powder and verify flight attribute + odometer persistence
+        ItemStack powder = new ItemStack(Items.BLAZE_POWDER, 3);
+        assertTrue(com.abdur.godtechascension.item.AscensionJetpackItem.tryAddFuelFromStack(jetpack, powder, false));
+        assertEquals(2, powder.getCount());
+        assertEquals(com.abdur.godtechascension.item.AscensionJetpackItem.FUEL_PER_BLAZE_POWDER,
+                com.abdur.godtechascension.item.AscensionJetpackItem.getData(jetpack).fuel());
+
+        AtomicBoolean fueledGrantsFlight = new AtomicBoolean(false);
+        jetpack.getAttributeModifiers().forEach(EquipmentSlotGroup.CHEST, (attr, mod) -> {
+            if (attr.equals(NeoForgeMod.CREATIVE_FLIGHT) && mod.amount() >= 1.0) {
+                fueledGrantsFlight.set(true);
+            }
+        });
+        assertTrue(fueledGrantsFlight.get(), "Fueled Jetpack must grant CREATIVE_FLIGHT attribute");
 
         ItemStack pick = new ItemStack(ModItems.GOD_PICKAXE.get());
         assertTrue(pick.has(DataComponents.UNBREAKABLE), "God Pickaxe must be unbreakable");

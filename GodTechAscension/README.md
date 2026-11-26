@@ -17,7 +17,7 @@ Every item and block has **JEI recipe & Info integration** plus a **`Hold [W]` a
 - **Ascension Exosuit & Jetpack (Unbreakable & Lava-Proof):**
   - **Ascension Helmet:** Night Vision + Water Breathing.
   - **Ascension Chestplate:** Fire Resistance + heavy armor.
-  - **Ascension Jetpack:** Smooth flight + thruster particles + Fall-Damage Immunity.
+  - **Ascension Jetpack:** Fueled by **Blaze Powder** (right-click in inventory or hand; `10` Blaze Powder = `100%` tank) with a live **Car/Bike-style HUD** showing `km/h` speed, `ODO (km)` distance traveled, and fuel gauge!
   - **Ascension Leggings:** Speed II boost.
   - **Ascension Boots:** Complete Fall-Damage Immunity.
 - **Sci-Fi Weapons & Gadgets:**
