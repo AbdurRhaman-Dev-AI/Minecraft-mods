@@ -1,7 +1,6 @@
 package com.abdur.godtechascension.compat.create;
 
 import com.abdur.godtechascension.registry.ModBlockEntities;
-import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
@@ -17,7 +16,7 @@ public final class CreateClientCompat {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(
                 (BlockEntityType<CreateArcReactorBlockEntity>) (BlockEntityType<?>) ModBlockEntities.ARC_REACTOR.get(),
-                ShaftRenderer::new
+                CreateArcReactorRenderer::new
         );
     }
 }
