@@ -1,9 +1,8 @@
-﻿{
+{
   "variants": {
     "facing=north": { "model": "godtechascension:block/arc_reactor" },
     "facing=east":  { "model": "godtechascension:block/arc_reactor", "y": 90 },
     "facing=south": { "model": "godtechascension:block/arc_reactor", "y": 180 },
-    "facing=west":  { "model": "godtechascension:block/arc_reactor", "y": 270 },
-    "":             { "model": "godtechascension:block/arc_reactor" }
+    "facing=west":  { "model": "godtechascension:block/arc_reactor", "y": 270 }
   }
 }
