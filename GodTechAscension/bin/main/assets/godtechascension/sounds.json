@@ -1,0 +1,11 @@
+{
+  "arc_reactor_loop": {
+    "subtitle": "subtitles.godtechascension.arc_reactor_loop",
+    "sounds": [
+      {
+        "name": "godtechascension:arc_reactor_loop",
+        "stream": false
+      }
+    ]
+  }
+}

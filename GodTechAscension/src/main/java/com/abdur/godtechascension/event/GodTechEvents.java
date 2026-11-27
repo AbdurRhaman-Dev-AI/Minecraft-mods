@@ -52,11 +52,6 @@ public final class GodTechEvents {
         public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
             event.registerBlockEntity(
                     Capabilities.EnergyStorage.BLOCK,
-                    ModBlockEntities.ARC_REACTOR.get(),
-                    (be, side) -> be.getEnergyStorage()
-            );
-            event.registerBlockEntity(
-                    Capabilities.EnergyStorage.BLOCK,
                     ModBlockEntities.MKV_REACTOR_CONTROLLER.get(),
                     (be, side) -> {
                         if (ModList.get().isLoaded("create")) {

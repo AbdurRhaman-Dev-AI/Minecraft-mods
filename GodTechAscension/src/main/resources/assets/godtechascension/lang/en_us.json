@@ -5,6 +5,7 @@
   "block.godtechascension.deepslate_titanium_ore": "Deepslate Titanium Ore",
   "block.godtechascension.titanium_casing": "Titanium Casing",
   "block.godtechascension.arc_reactor": "Arc Reactor",
+  "block.godtechascension.reactor_core": "Reactor Core",
   "block.godtechascension.mkv_reactor_controller": "MK-V Reactor Controller",
   "block.godtechascension.mkv_reactor_core": "MK-V Reactor Core",
   "block.godtechascension.alloy_synthesizer": "Alloy Synthesizer",
@@ -47,7 +48,9 @@
 
   "jei.godtechascension.info.titanium_ore": "Generates underground between Y = -64 and Y = 32. Mine with an Iron Pickaxe or better to obtain Raw Titanium (affected by Fortune).",
   "jei.godtechascension.info.titanium_casing": "Industrial casing block crafted from Titanium Sheets, Iron Ingots, and Redstone. Used to craft the Arc Reactor, Alloy Synthesizer, and Warp Beacon.",
-  "jei.godtechascension.info.arc_reactor": "Endgame FE generator powered by a God Core. Produces 100,000 FE/t continuously (10,000,000 FE buffer) and auto-pushes power to adjacent PowerGrid wires and machines.",
+  "subtitles.godtechascension.arc_reactor_loop": "Arc Reactor generator hums",
+  "jei.godtechascension.info.arc_reactor": "Pure Create rotational SU generator (1,474,560 su at 256 RPM = 5x Max Steam Engine). Flip a Redstone Lever ON to start (16-block generator sound). Connect Shafts/Cogs/Gearboxes to the bottom arch; Shift+Right-Click with a Create Wrench to pick up.",
+  "jei.godtechascension.info.reactor_core": "Core block for the Arc Reactor, crafted from 6x Redstone Blocks, Precision Mechanism, God Core, and Void Shard.",
   "jei.godtechascension.info.mkv_reactor_controller": "Controller for the 4x2x2 MK-V Arc Reactor multiblock (Titanium Casings + 2+ MK-V Reactor Cores). Flip a Lever ON to output 1,474,560 su (5x Max Steam Engines at 256 RPM) + 100,000 FE/t!",
   "jei.godtechascension.info.mkv_reactor_core": "Plasma core block for the 4x2x2 MK-V Arc Reactor multiblock. Place at least 2 inside the structure.",
   "jei.godtechascension.info.alloy_synthesizer": "FE-powered 2-input sci-fi machine. Synthesizes Titanium Alloy, Quantum Circuits, and Singularity Shards.",

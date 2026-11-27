@@ -1,7 +1,7 @@
 package com.abdur.godtechascension;
 
 import com.abdur.godtechascension.block.AlloySynthesizerBlockEntity;
-import com.abdur.godtechascension.block.ArcReactorBlockEntity;
+import com.abdur.godtechascension.block.MkvReactorFallbackBlockEntity;
 import com.abdur.godtechascension.block.ModEnergyStorage;
 import com.abdur.godtechascension.menu.AlloySynthesizerMenu;
 import com.abdur.godtechascension.recipe.AlloyRecipe;
@@ -115,19 +115,22 @@ public class GodTechServerTest {
 
     @Test
     void testArcReactorEnergyAndSynthesizer32BitSync(MinecraftServer server) {
-        ArcReactorBlockEntity reactor = new ArcReactorBlockEntity(
-                BlockPos.ZERO, ModBlocks.ARC_REACTOR.get().defaultBlockState());
+        MkvReactorFallbackBlockEntity mkv = new MkvReactorFallbackBlockEntity(
+                BlockPos.ZERO, ModBlocks.MKV_REACTOR_CONTROLLER.get().defaultBlockState());
         AlloySynthesizerBlockEntity synth = new AlloySynthesizerBlockEntity(
                 BlockPos.ZERO, ModBlocks.ALLOY_SYNTHESIZER.get().defaultBlockState());
 
         // Test ModEnergyStorage generation & clamping (100k FE/t, 10M FE cap)
-        ModEnergyStorage reactorEnergy = (ModEnergyStorage) reactor.getEnergyStorage();
-        reactorEnergy.addEnergy(ArcReactorBlockEntity.GENERATION_PER_TICK);
+        ModEnergyStorage reactorEnergy = (ModEnergyStorage) mkv.getEnergyStorage();
+        reactorEnergy.addEnergy(MkvReactorFallbackBlockEntity.GENERATION_PER_TICK);
         assertEquals(100_000, reactorEnergy.getEnergyStored());
         reactorEnergy.addEnergy(20_000_000);
-        assertEquals(ArcReactorBlockEntity.CAPACITY, reactorEnergy.getEnergyStored(), "Capacity must clamp at 10,000,000 FE");
+        assertEquals(MkvReactorFallbackBlockEntity.CAPACITY, reactorEnergy.getEnergyStored(), "Capacity must clamp at 10,000,000 FE");
 
-        // Verify MK-V Create stress capacity math = 5x Max Level-18 Steam Engines (1,474,560 su)
+        // Verify 1-block Arc Reactor & MK-V Create stress capacity math = 5x Max Level-18 Steam Engines (1,474,560 su)
+        assertEquals(1_474_560.0F,
+                com.abdur.godtechascension.compat.create.CreateArcReactorBlockEntity.STRESS_CAPACITY_PER_RPM * 256.0F,
+                0.1F);
         assertEquals(1_474_560.0F,
                 com.abdur.godtechascension.compat.create.CreateMkvReactorBlockEntity.STRESS_CAPACITY_PER_RPM * 256.0F,
                 0.1F);

@@ -60,16 +60,32 @@ public final class ModBlocks {
             )
     );
 
-    public static final DeferredBlock<Block> ARC_REACTOR = BLOCKS.register(
-            "arc_reactor",
-            () -> new ArcReactorBlock(
+    public static final DeferredBlock<Block> REACTOR_CORE = BLOCKS.register(
+            "reactor_core",
+            () -> new Block(
                     BlockBehaviour.Properties.of()
-                            .mapColor(MapColor.COLOR_CYAN)
+                            .mapColor(MapColor.COLOR_RED)
                             .requiresCorrectToolForDrops()
-                            .strength(5.0F, 12.0F)
-                            .lightLevel(state -> 14)
+                            .strength(4.5F, 10.0F)
+                            .lightLevel(state -> 12)
                             .sound(SoundType.METAL)
             )
+    );
+
+    public static final DeferredBlock<Block> ARC_REACTOR = BLOCKS.register(
+            "arc_reactor",
+            () -> {
+                BlockBehaviour.Properties props = BlockBehaviour.Properties.of()
+                        .mapColor(MapColor.COLOR_CYAN)
+                        .requiresCorrectToolForDrops()
+                        .strength(5.0F, 12.0F)
+                        .lightLevel(state -> 14)
+                        .noOcclusion()
+                        .sound(SoundType.COPPER);
+                return ModList.get().isLoaded("create")
+                        ? CreateCompat.createArcReactorBlock(props)
+                        : new ArcReactorBlock(props);
+            }
     );
 
     public static final DeferredBlock<Block> ALLOY_SYNTHESIZER = BLOCKS.register(

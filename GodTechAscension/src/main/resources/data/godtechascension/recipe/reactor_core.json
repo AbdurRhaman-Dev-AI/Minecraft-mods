@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": { "item": "minecraft:redstone_block" },
+    "M": { "item": "create:precision_mechanism" },
+    "G": { "item": "godtechascension:god_core" },
+    "V": { "item": "godtechascension:void_shard" }
+  },
+  "pattern": [
+    "RRR",
+    "MGV",
+    "RRR"
+  ],
+  "result": { "id": "godtechascension:reactor_core", "count": 1 }
+}

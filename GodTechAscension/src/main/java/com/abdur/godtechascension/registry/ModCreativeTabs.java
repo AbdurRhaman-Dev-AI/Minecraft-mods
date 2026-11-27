@@ -26,6 +26,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.DEEPSLATE_TITANIUM_ORE.get());
                         output.accept(ModItems.TITANIUM_CASING.get());
                         output.accept(ModItems.ARC_REACTOR.get());
+                        output.accept(ModItems.REACTOR_CORE.get());
                         output.accept(ModItems.MKV_REACTOR_CONTROLLER.get());
                         output.accept(ModItems.MKV_REACTOR_CORE.get());
                         output.accept(ModItems.ALLOY_SYNTHESIZER.get());

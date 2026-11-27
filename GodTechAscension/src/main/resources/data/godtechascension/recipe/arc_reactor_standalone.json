@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "create"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": { "item": "godtechascension:titanium_casing" },
+    "M": { "item": "godtechascension:reinforced_mechanism" },
+    "R": { "item": "godtechascension:reactor_core" },
+    "O": { "item": "minecraft:oxidized_copper" }
+  },
+  "pattern": [
+    "CMC",
+    "CRC",
+    "COC"
+  ],
+  "result": { "id": "godtechascension:arc_reactor", "count": 1 }
+}

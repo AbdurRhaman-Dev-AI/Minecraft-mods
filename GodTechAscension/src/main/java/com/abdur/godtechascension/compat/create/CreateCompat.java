@@ -21,6 +21,14 @@ public final class CreateCompat {
     private CreateCompat() {
     }
 
+    public static Block createArcReactorBlock(BlockBehaviour.Properties properties) {
+        return new CreateArcReactorBlock(properties);
+    }
+
+    public static BlockEntity createArcReactorBlockEntity(BlockPos pos, BlockState state) {
+        return new CreateArcReactorBlockEntity(pos, state);
+    }
+
     public static Block createMkvControllerBlock(BlockBehaviour.Properties properties) {
         return new CreateMkvReactorBlock(properties);
     }
@@ -42,6 +50,10 @@ public final class CreateCompat {
     public static void onCommonSetup() {
         GogglesItem.addIsWearingPredicate(
                 player -> player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.ASCENSION_HELMET.get())
+        );
+        BlockStressValues.CAPACITIES.register(
+                ModBlocks.ARC_REACTOR.get(),
+                () -> CreateArcReactorBlockEntity.STRESS_CAPACITY_PER_RPM
         );
         BlockStressValues.CAPACITIES.register(
                 ModBlocks.MKV_REACTOR_CONTROLLER.get(),

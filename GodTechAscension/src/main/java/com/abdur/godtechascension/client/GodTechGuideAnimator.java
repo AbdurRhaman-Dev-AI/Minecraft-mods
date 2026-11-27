@@ -40,7 +40,7 @@ public final class GodTechGuideAnimator {
             renderRailgunScene(g, font, x, y, w, h, t);
         } else if (item == ModItems.ARC_REACTOR.get()) {
             renderArcReactorScene(g, font, x, y, w, h, t);
-        } else if (item == ModItems.MKV_REACTOR_CONTROLLER.get() || item == ModItems.MKV_REACTOR_CORE.get()) {
+        } else if (item == ModItems.REACTOR_CORE.get() || item == ModItems.MKV_REACTOR_CONTROLLER.get() || item == ModItems.MKV_REACTOR_CORE.get()) {
             renderMkvReactorScene(g, font, x, y, w, h, t);
         } else if (item == ModItems.ALLOY_SYNTHESIZER.get()) {
             renderSynthesizerScene(g, font, x, y, w, h, t);
@@ -151,10 +151,10 @@ public final class GodTechGuideAnimator {
         g.fill(cx - 1, cy - 2 - pulse / 2, cx + 1, cy + 2 + pulse / 2, 0xFF39C5E8);
 
         g.renderItem(new ItemStack(ModItems.ARC_REACTOR.get()), cx - 8, cy - 8);
-        g.renderItem(new ItemStack(ModItems.ALLOY_SYNTHESIZER.get()), cx + 30, cy - 8);
-        g.renderItem(new ItemStack(Items.REDSTONE_LAMP), cx - 46, cy - 8);
+        g.renderItem(new ItemStack(Items.LEVER), cx + 28, cy - 8);
+        g.renderItem(new ItemStack(ModItems.REACTOR_CORE.get()), cx - 44, cy - 8);
 
-        drawCenteredCaption(g, font, "Outputs 100,000 FE/t", cx, y + h - 14, 0xFF55FFFF);
+        drawCenteredCaption(g, font, "256 RPM | 1,474,560 su", cx, y + h - 14, 0xFF55FFFF);
     }
 
     private static void renderMkvReactorScene(GuiGraphics g, Font font, int x, int y, int w, int h, double t) {

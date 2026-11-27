@@ -45,6 +45,8 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TITANIUM_CASING = ITEMS.registerSimpleBlockItem(ModBlocks.TITANIUM_CASING);
     public static final DeferredItem<BlockItem> ARC_REACTOR = ITEMS.registerSimpleBlockItem(
             ModBlocks.ARC_REACTOR, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
+    public static final DeferredItem<BlockItem> REACTOR_CORE = ITEMS.registerSimpleBlockItem(
+            ModBlocks.REACTOR_CORE, new Item.Properties().rarity(Rarity.RARE).fireResistant());
     public static final DeferredItem<BlockItem> ALLOY_SYNTHESIZER = ITEMS.registerSimpleBlockItem(
             ModBlocks.ALLOY_SYNTHESIZER, new Item.Properties().rarity(Rarity.RARE).fireResistant());
     public static final DeferredItem<BlockItem> QUANTUM_WARP_BEACON = ITEMS.registerSimpleBlockItem(

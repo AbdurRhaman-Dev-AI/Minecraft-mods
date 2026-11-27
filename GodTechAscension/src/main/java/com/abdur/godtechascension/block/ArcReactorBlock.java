@@ -18,7 +18,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Endgame FE generator powered by a God Core (16,384 FE/t output).
+ * Fallback Arc Reactor block when Create is not installed.
  */
 public class ArcReactorBlock extends BaseEntityBlock {
 
@@ -49,18 +49,24 @@ public class ArcReactorBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
             Level level, BlockState state, BlockEntityType<T> type) {
         return level.isClientSide ? null : createTickerHelper(
-                type, ModBlockEntities.ARC_REACTOR.get(), ArcReactorBlockEntity::serverTick);
+                type, ModBlockEntities.ARC_REACTOR.get(),
+                (lvl, p, st, be) -> {
+                    if (be instanceof ArcReactorBlockEntity fb) {
+                        ArcReactorBlockEntity.serverTick(lvl, p, st, fb);
+                    }
+                });
     }
 
     @Override
     protected InteractionResult useWithoutItem(
             BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if (!level.isClientSide && level.getBlockEntity(pos) instanceof ArcReactorBlockEntity reactor) {
-            int stored = reactor.getEnergyStorage().getEnergyStored();
-            int max = reactor.getEnergyStorage().getMaxEnergyStored();
+        if (!level.isClientSide) {
+            boolean active = level.hasNeighborSignal(pos);
             player.displayClientMessage(
-                    Component.literal(String.format("Arc Reactor: %,d / %,d FE (+100,000 FE/t)", stored, max))
-                            .withStyle(ChatFormatting.AQUA),
+                    Component.literal(active
+                                    ? "Arc Reactor ACTIVE (Install Create for 1,474,560 su rotation)"
+                                    : "Arc Reactor STANDBY: Apply Redstone / Lever to start.")
+                            .withStyle(active ? ChatFormatting.AQUA : ChatFormatting.YELLOW),
                     true
             );
         }

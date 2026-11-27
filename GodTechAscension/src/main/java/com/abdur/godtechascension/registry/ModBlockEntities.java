@@ -20,10 +20,15 @@ public final class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, GodTechAscension.MODID);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ArcReactorBlockEntity>> ARC_REACTOR =
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockEntity>> ARC_REACTOR =
             BLOCK_ENTITIES.register(
                     "arc_reactor",
-                    () -> BlockEntityType.Builder.of(ArcReactorBlockEntity::new, ModBlocks.ARC_REACTOR.get()).build(null)
+                    () -> BlockEntityType.Builder.of(
+                            (pos, state) -> ModList.get().isLoaded("create")
+                                    ? CreateCompat.createArcReactorBlockEntity(pos, state)
+                                    : new ArcReactorBlockEntity(pos, state),
+                            ModBlocks.ARC_REACTOR.get()
+                    ).build(null)
             );
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AlloySynthesizerBlockEntity>> ALLOY_SYNTHESIZER =

@@ -134,10 +134,17 @@ public final class GodTechGuideData {
         ));
 
         map.put(ModItems.ARC_REACTOR.get(), new GuideEntry(
-                "Tier 4 - Compact Power Generator",
-                "Crafted from Titanium Casing, God Core, Quantum Circuits, and Redstone Blocks.",
-                "Generates 100,000 FE/t (10M FE buffer) and auto-pushes FE into adjacent PowerGrid wires and machines.",
-                List.of(ModItems.MKV_REACTOR_CONTROLLER.get(), ModItems.ALLOY_SYNTHESIZER.get(), ModItems.GOD_CORE.get())
+                "Tier 4 - Create Rotational Generator",
+                "Crafted from Steam Whistles, Cogwheel, Steam Engines, Reactor Core, and Oxidized Copper.",
+                "Connects to Create Shafts/Cogs/Gearboxes. Flip a Lever ON to generate 1,474,560 su (5x Max Steam Engine at 256 RPM) with a 16-block generator sound. Wrenchable!",
+                List.of(ModItems.REACTOR_CORE.get(), ModItems.MKV_REACTOR_CONTROLLER.get(), ModItems.GOD_CORE.get())
+        ));
+
+        map.put(ModItems.REACTOR_CORE.get(), new GuideEntry(
+                "Tier 4 - Reactor Core Block",
+                "Crafted from 6x Redstone Blocks, Precision Mechanism, God Core, and Void Shard.",
+                "Primary core block used to craft the 1-block Arc Reactor rotational SU generator.",
+                List.of(ModItems.ARC_REACTOR.get(), ModItems.GOD_CORE.get(), ModItems.VOID_SHARD.get())
         ));
 
         map.put(ModItems.MKV_REACTOR_CONTROLLER.get(), new GuideEntry(

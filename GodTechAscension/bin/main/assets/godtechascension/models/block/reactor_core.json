@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "godtechascension:block/reactor_core_top",
+    "bottom": "godtechascension:block/reactor_core_top",
+    "side": "godtechascension:block/reactor_core_side"
+  }
+}

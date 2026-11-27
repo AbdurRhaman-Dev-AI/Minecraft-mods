@@ -8,6 +8,7 @@ import com.abdur.godtechascension.registry.ModDataComponents;
 import com.abdur.godtechascension.registry.ModItems;
 import com.abdur.godtechascension.registry.ModMenus;
 import com.abdur.godtechascension.registry.ModRecipes;
+import com.abdur.godtechascension.registry.ModSounds;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
@@ -28,6 +29,7 @@ public class GodTechAscension {
         ModMenus.MENUS.register(modEventBus);
         ModRecipes.TYPES.register(modEventBus);
         ModRecipes.SERIALIZERS.register(modEventBus);
+        ModSounds.SOUNDS.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
     }
 }
