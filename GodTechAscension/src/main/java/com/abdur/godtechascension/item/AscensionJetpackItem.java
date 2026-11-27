@@ -61,6 +61,7 @@ public class AscensionJetpackItem extends ArmorItem {
     private static final String TAG_HAS_LAST = "gt_jp_has";
     private static final String TAG_PENDING_DIST = "gt_jp_pending";
     private static final String TAG_SOUND_TIMER = "gt_jp_snd";
+    private static final String TAG_WAS_FLYING = "gt_jp_fly";
 
     public AscensionJetpackItem(Holder<ArmorMaterial> material, Properties properties) {
         super(material, Type.CHESTPLATE, properties);
@@ -207,6 +208,7 @@ public class AscensionJetpackItem extends ArmorItem {
         if (player.getItemBySlot(EquipmentSlot.CHEST) != stack) {
             player.getPersistentData().remove(TAG_HAS_LAST);
             player.getPersistentData().remove(TAG_SOUND_TIMER);
+            player.getPersistentData().remove(TAG_WAS_FLYING);
             return;
         }
 
@@ -241,10 +243,13 @@ public class AscensionJetpackItem extends ArmorItem {
         }
 
         // Drain Blaze Cake fuel (1 tick = 1 fuel; 1200 ticks = 1 minute) & play 32-block thrust sound
-        if (player.getAbilities().flying) {
+        boolean isFlying = player.getAbilities().flying;
+        boolean wasFlying = pData.getBoolean(TAG_WAS_FLYING);
+
+        if (isFlying) {
             int sndTimer = pData.getInt(TAG_SOUND_TIMER);
             if (sndTimer <= 0) {
-                // Volume 2.0F -> audible from 32 blocks away
+                // Volume 2.0F -> audible from 32 blocks away (with attenuated .ogg for wearer comfort)
                 level.playSound(
                         null,
                         player.getX(),
@@ -266,6 +271,7 @@ public class AscensionJetpackItem extends ArmorItem {
                 if (fuel == 0) {
                     player.getAbilities().flying = false;
                     player.onUpdateAbilities();
+                    isFlying = false;
                     player.displayClientMessage(
                             Component.literal("Jetpack out of Blaze Cake fuel!").withStyle(ChatFormatting.RED),
                             true
@@ -273,26 +279,49 @@ public class AscensionJetpackItem extends ArmorItem {
                 }
             }
 
-            if (level instanceof ServerLevel serverLevel && level.getGameTime() % 2 == 0) {
-                serverLevel.sendParticles(
-                        ParticleTypes.SOUL_FIRE_FLAME,
-                        player.getX(),
-                        player.getY() + 0.2D,
-                        player.getZ(),
-                        2,
-                        0.15D,
-                        0.05D,
-                        0.15D,
-                        0.02D
-                );
+            if (isFlying && level instanceof ServerLevel serverLevel) {
+                spawnJetpackFlames(serverLevel, player);
             }
         } else {
             pData.putInt(TAG_SOUND_TIMER, 0);
         }
 
+        if (wasFlying && !isFlying && level instanceof ServerLevel serverLevel) {
+            spawnJetpackStopSmoke(serverLevel, player);
+        }
+        pData.putBoolean(TAG_WAS_FLYING, isFlying);
+
         if (changed) {
             setData(stack, new ModDataComponents.JetpackData(fuel, dist));
         }
+    }
+
+    private static void spawnJetpackFlames(ServerLevel level, Player player) {
+        double yawRad = Math.toRadians(player.yBodyRot);
+        double backX = Math.sin(yawRad) * 0.32D;
+        double backZ = -Math.cos(yawRad) * 0.32D;
+        double rightX = Math.cos(yawRad) * 0.22D;
+        double rightZ = Math.sin(yawRad) * 0.22D;
+        double y = player.getY() + 0.65D;
+
+        for (int side = -1; side <= 1; side += 2) {
+            double px = player.getX() + backX + rightX * side;
+            double pz = player.getZ() + backZ + rightZ * side;
+            level.sendParticles(ParticleTypes.FLAME, px, y, pz, 2, 0.04D, 0.05D, 0.04D, 0.04D);
+            level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, px, y - 0.1D, pz, 2, 0.04D, 0.05D, 0.04D, 0.05D);
+        }
+    }
+
+    private static void spawnJetpackStopSmoke(ServerLevel level, Player player) {
+        double yawRad = Math.toRadians(player.yBodyRot);
+        double backX = Math.sin(yawRad) * 0.35D;
+        double backZ = -Math.cos(yawRad) * 0.35D;
+        double x = player.getX() + backX;
+        double y = player.getY() + 0.85D;
+        double z = player.getZ() + backZ;
+
+        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 8, 0.22D, 0.15D, 0.22D, 0.03D);
+        level.sendParticles(ParticleTypes.LARGE_SMOKE, x, y, z, 6, 0.20D, 0.12D, 0.20D, 0.04D);
     }
 
     @Override
