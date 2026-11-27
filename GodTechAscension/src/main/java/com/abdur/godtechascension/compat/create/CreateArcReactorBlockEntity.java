@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -43,7 +44,7 @@ public class CreateArcReactorBlockEntity extends GeneratingKineticBlockEntity {
     public static final int FUEL_PER_BLAZE_CAKE = 600 * 20; // 600 seconds = 12,000 ticks
     public static final int MAX_FUEL_TICKS = MAX_BLAZE_CAKES * FUEL_PER_BLAZE_CAKE;
     private static final int SOUND_LOOP_TICKS = 235;
-    private static final int STEAM_INTERVAL_TICKS = 30 * 20; // 30 seconds = 600 ticks
+    private static final int STEAM_INTERVAL_TICKS = 5 * 20; // 5 seconds = 100 ticks
 
     private ScrollValueBehaviour generatedSpeed;
     private boolean active;
@@ -108,6 +109,7 @@ public class CreateArcReactorBlockEntity extends GeneratingKineticBlockEntity {
         sendData();
         if (!wasRunning && isRunning()) {
             soundTimer = 0;
+            syncLitState();
             updateGeneratedRotation();
             playGeneratorSound();
         }
@@ -129,6 +131,7 @@ public class CreateArcReactorBlockEntity extends GeneratingKineticBlockEntity {
         setChanged();
         sendData();
         if (wasRunning && !isRunning()) {
+            syncLitState();
             updateGeneratedRotation();
         }
         return cakes;
@@ -142,12 +145,27 @@ public class CreateArcReactorBlockEntity extends GeneratingKineticBlockEntity {
         if (powered != active) {
             active = powered;
             soundTimer = 0;
+            syncLitState();
             updateGeneratedRotation();
             setChanged();
             sendData();
             if (isRunning()) {
                 playGeneratorSound();
             }
+        } else {
+            syncLitState();
+        }
+    }
+
+    private void syncLitState() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        BlockState state = getBlockState();
+        boolean shouldLit = isRunning();
+        if (state.hasProperty(CreateArcReactorBlock.LIT)
+                && state.getValue(CreateArcReactorBlock.LIT) != shouldLit) {
+            level.setBlock(worldPosition, state.setValue(CreateArcReactorBlock.LIT, shouldLit), Block.UPDATE_ALL);
         }
     }
 
@@ -183,6 +201,7 @@ public class CreateArcReactorBlockEntity extends GeneratingKineticBlockEntity {
             fuelTicks--;
             if (fuelTicks <= 0) {
                 fuelTicks = 0;
+                syncLitState();
                 updateGeneratedRotation();
                 setChanged();
                 sendData();
@@ -190,6 +209,20 @@ public class CreateArcReactorBlockEntity extends GeneratingKineticBlockEntity {
             }
             if (level.getGameTime() % 20 == 0) {
                 setChanged();
+            }
+
+            if (level.getGameTime() % 10 == 0 && level instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(
+                        ParticleTypes.GLOW,
+                        worldPosition.getX() + 0.5D,
+                        worldPosition.getY() + 0.85D,
+                        worldPosition.getZ() + 0.5D,
+                        2,
+                        0.32D,
+                        0.18D,
+                        0.32D,
+                        0.01D
+                );
             }
 
             soundTimer++;

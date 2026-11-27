@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.fml.ModList;
@@ -79,7 +80,8 @@ public final class ModBlocks {
                         .mapColor(MapColor.COLOR_CYAN)
                         .requiresCorrectToolForDrops()
                         .strength(5.0F, 12.0F)
-                        .lightLevel(state -> 14)
+                        .lightLevel(state -> state.hasProperty(BlockStateProperties.LIT)
+                                && state.getValue(BlockStateProperties.LIT) ? 15 : 0)
                         .noOcclusion()
                         .sound(SoundType.COPPER);
                 return ModList.get().isLoaded("create")

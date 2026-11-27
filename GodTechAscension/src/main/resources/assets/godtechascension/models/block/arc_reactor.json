@@ -4,7 +4,7 @@
     "slate": "godtechascension:block/arc_reactor_slate",
     "copper": "godtechascension:block/arc_reactor_copper",
     "brass": "godtechascension:block/arc_reactor_brass",
-    "plasma": "godtechascension:block/arc_reactor_plasma",
+    "plasma": "godtechascension:block/arc_reactor_plasma_off",
     "particle": "godtechascension:block/arc_reactor_slate"
   },
   "elements": [
