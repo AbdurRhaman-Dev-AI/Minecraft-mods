@@ -9,6 +9,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -63,9 +64,12 @@ public final class JetpackHudOverlay {
         int odoW = font.width(odoText);
         g.drawString(font, odoText, x + w - odoW - 8, y + 6, 0x55FFFF, false);
 
-        // Fuel label + Blaze Powder icon
-        g.renderItem(new ItemStack(Items.BLAZE_POWDER), x + 6, y + 19);
-        String fuelText = fuel <= 0 ? "EMPTY (Blaze Powder)" : String.format("FUEL %d%%", pct);
+        // Fuel label + Blaze Cake icon
+        Item blazeCakeItem = AscensionJetpackItem.getBlazeCakeItem();
+        g.renderItem(new ItemStack(blazeCakeItem != Items.AIR ? blazeCakeItem : Items.BLAZE_POWDER), x + 6, y + 19);
+        int mins = fuel / 1200;
+        int secs = (fuel % 1200) / 20;
+        String fuelText = fuel <= 0 ? "EMPTY (Blaze Cake)" : String.format("%dm %02ds (%d%%)", mins, secs, pct);
         g.drawString(font, fuelText, x + 26, y + 23, borderColor, false);
 
         // Fuel bar

@@ -7,5 +7,14 @@
         "stream": false
       }
     ]
+  },
+  "jetpack_thrust": {
+    "subtitle": "subtitles.godtechascension.jetpack_thrust",
+    "sounds": [
+      {
+        "name": "godtechascension:jetpack_thrust",
+        "stream": false
+      }
+    ]
   }
 }

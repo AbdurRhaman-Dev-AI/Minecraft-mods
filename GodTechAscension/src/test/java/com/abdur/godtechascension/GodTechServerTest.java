@@ -57,12 +57,27 @@ public class GodTechServerTest {
         });
         assertFalse(emptyGrantsFlight.get(), "Empty Jetpack (0 fuel) must NOT grant CREATIVE_FLIGHT");
 
-        // Refuel with Blaze Powder and verify flight attribute + odometer persistence
+        // Blaze Powder must NOT fuel the Jetpack; Blaze Cake (1200 ticks = 1 min, max 64) is required
         ItemStack powder = new ItemStack(Items.BLAZE_POWDER, 3);
-        assertTrue(com.abdur.godtechascension.item.AscensionJetpackItem.tryAddFuelFromStack(jetpack, powder, false));
-        assertEquals(2, powder.getCount());
-        assertEquals(com.abdur.godtechascension.item.AscensionJetpackItem.FUEL_PER_BLAZE_POWDER,
-                com.abdur.godtechascension.item.AscensionJetpackItem.getData(jetpack).fuel());
+        assertFalse(com.abdur.godtechascension.item.AscensionJetpackItem.tryAddFuelFromStack(jetpack, powder, true));
+        assertEquals(1200, com.abdur.godtechascension.item.AscensionJetpackItem.FUEL_PER_BLAZE_CAKE);
+        assertEquals(64 * 1200, com.abdur.godtechascension.item.AscensionJetpackItem.MAX_FUEL);
+
+        net.minecraft.world.item.Item blazeCake = com.abdur.godtechascension.item.AscensionJetpackItem.getBlazeCakeItem();
+        if (blazeCake != Items.AIR) {
+            ItemStack cakes = new ItemStack(blazeCake, 64);
+            assertTrue(com.abdur.godtechascension.item.AscensionJetpackItem.tryAddFuelFromStack(jetpack, cakes, true));
+            assertEquals(0, cakes.getCount());
+            assertEquals(com.abdur.godtechascension.item.AscensionJetpackItem.MAX_FUEL,
+                    com.abdur.godtechascension.item.AscensionJetpackItem.getData(jetpack).fuel());
+        } else {
+            com.abdur.godtechascension.item.AscensionJetpackItem.setData(
+                    jetpack,
+                    new com.abdur.godtechascension.registry.ModDataComponents.JetpackData(
+                            com.abdur.godtechascension.item.AscensionJetpackItem.FUEL_PER_BLAZE_CAKE, 0.0D
+                    )
+            );
+        }
 
         AtomicBoolean fueledGrantsFlight = new AtomicBoolean(false);
         jetpack.getAttributeModifiers().forEach(EquipmentSlotGroup.CHEST, (attr, mod) -> {

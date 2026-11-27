@@ -22,6 +22,13 @@ public final class ModSounds {
             )
     );
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> JETPACK_THRUST = SOUNDS.register(
+            "jetpack_thrust",
+            () -> SoundEvent.createVariableRangeEvent(
+                    ResourceLocation.fromNamespaceAndPath(GodTechAscension.MODID, "jetpack_thrust")
+            )
+    );
+
     private ModSounds() {
     }
 }

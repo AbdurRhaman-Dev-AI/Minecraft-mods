@@ -226,8 +226,8 @@ public final class GodTechGuideData {
 
         map.put(ModItems.ASCENSION_JETPACK.get(), new GuideEntry(
                 "Tier 4 - Sci-Fi Flight",
-                "Crafted from Titanium Alloy, Reinforced Mechanism, God Core, and Blaze Rods. Refuel with Blaze Powder.",
-                "Unbreakable & lava-proof. Right-click with Blaze Powder to fuel (10x = 100%). Shows live km/h speed, km odometer, and fuel HUD.",
+                "Crafted from Titanium Alloy, Reinforced Mechanism, God Core, and Blaze Rods. Refuel with Create Blaze Cakes.",
+                "Unbreakable & lava-proof with Protection V and 4 armor bars. 1 Blaze Cake = 1 min flight (max 64 at once). 32-block thrust sound & km/h HUD.",
                 List.of(ModItems.ASCENSION_CHESTPLATE.get(), ModItems.GOD_CORE.get(), ModItems.REINFORCED_MECHANISM.get())
         ));
 
