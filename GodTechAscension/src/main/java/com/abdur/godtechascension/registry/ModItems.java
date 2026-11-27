@@ -166,7 +166,7 @@ public final class ModItems {
     public static final DeferredItem<ArmorItem> ASCENSION_JETPACK = ITEMS.register(
             "ascension_jetpack",
             () -> new AscensionJetpackItem(
-                    ModArmorMaterials.ASCENSION,
+                    ModArmorMaterials.ASCENSION_JETPACK,
                     new Item.Properties().rarity(Rarity.EPIC).fireResistant()
                             .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
             )

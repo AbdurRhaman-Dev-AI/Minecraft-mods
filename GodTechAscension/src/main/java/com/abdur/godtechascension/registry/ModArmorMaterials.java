@@ -15,7 +15,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 /**
- * Registers the Ascension Exosuit ArmorMaterial for NeoForge 1.21.1.
+ * Registers ArmorMaterials for the Ascension Exosuit and 3D Backtank Jetpack.
  */
 public final class ModArmorMaterials {
 
@@ -40,6 +40,24 @@ public final class ModArmorMaterials {
                     )),
                     4.0F,
                     0.2F
+            )
+    );
+
+    public static final Holder<ArmorMaterial> ASCENSION_JETPACK = ARMOR_MATERIALS.register(
+            "ascension_jetpack",
+            () -> new ArmorMaterial(
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.CHESTPLATE, 8);
+                        map.put(ArmorItem.Type.BODY, 8);
+                    }),
+                    22,
+                    SoundEvents.ARMOR_EQUIP_NETHERITE,
+                    () -> Ingredient.of(ModItems.TITANIUM_ALLOY.get()),
+                    List.of(new ArmorMaterial.Layer(
+                            ResourceLocation.fromNamespaceAndPath(GodTechAscension.MODID, "ascension_jetpack")
+                    )),
+                    3.0F,
+                    0.1F
             )
     );
 
